@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+
+body{
+  font-family: 'Prompt', sans-serif;
+  min-height:100vh;
+  background: linear-gradient(62deg, #FBAB7E, #F7CE68);
+}
