@@ -8,7 +8,7 @@
   <h1 align="center">ToDo List</h1>
 
   <p align="center">
-Best ToDo list ever (i swear)
+Best ToDo List ever (i swear)
     <br />
     <br />
     <br />
