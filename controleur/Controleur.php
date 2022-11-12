@@ -13,7 +13,12 @@ class Controleur {
 		$dVueEreur = array ();
 
 		try{
-			$action=$_REQUEST['action'];
+			if(isset($_REQUEST['action'])){
+				$action=$_REQUEST['action'];
+			}
+			else{
+				$action=NULL;
+			}
 
 			switch($action) {
 
