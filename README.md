@@ -12,8 +12,9 @@ Best ToDo List ever (i swear)
     <br />
     <br />
     <br />
-    <a href="https://codefirst.iut.uca.fr/git/ARTeam/SAE-3.01/wiki">Wiki</a>
+    <a href="https://codefirst.iut.uca.fr/git/PHPull/ToDoList/wiki/">Wiki</a>
     ·
+    <a href="#">ToDo List</a>
 
   </p>
 </div>
