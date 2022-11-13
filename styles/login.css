@@ -82,3 +82,12 @@ body{
   color:black;
   background:white;
 }
+.changePage{
+  background: none;  
+  margin-top:.5rem;
+  border:none;
+}
+.changePage:hover{
+  cursor:pointer;
+  text-decoration: underline;
+}

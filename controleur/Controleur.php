@@ -27,11 +27,24 @@ class Controleur {
 				$this->Reinit();
 				break;
 
-
-			case "validationFormulaire":
-				$this->ValidationFormulaire($dVueEreur);
+			case "validationLogin":
+				$this->ValidationFormulaireLogin($dVueEreur);
 				break;
-
+			
+			case "validationRegister":
+				$this->ValidationFormulaireRegister($dVueEreur);
+				break;
+			case "goRegister":
+				require($rep.$vues['register']);
+				break;				
+			case "goLogin":
+				require($rep.$vues['login']);
+				break;
+					
+			case "déconnexion":
+				$this->Deconnexion();
+				break;
+						
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -61,21 +74,53 @@ class Controleur {
 		require ($rep.$vues['login']);
 	}
 
-	function ValidationFormulaire(array $dVueEreur) {
+	function ValidationFormulaireRegister(array $dVueEreur) {
 		global $rep,$vues;
 
 		//si exception, ca remonte !!!
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
-		Validation::val_form($email, $password, $dVueEreur);
+		$passwordConfirm=$_POST['passwordConfirm'];
+		Validation::val_formReg($email, $password, $passwordConfirm ,$dVueEreur);
+		
+		if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
+			require($rep.$vues['register']);
+		}
+		else{
+			require ($rep.$vues['main']);
+		}
+	}
+	
+	function ValidationFormulaireLogin(array $dVueEreur) {
+		global $rep,$vues;
+
+		//si exception, ca remonte !!!
+		$email=$_POST['email']; 
+		$password=$_POST['password'];
+		Validation::val_formLog($email, $password, $dVueEreur);
 		
 		if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
 			require($rep.$vues['login']);
 		}
 		else{
-			require ($rep.$vues['test']);
+			Validation::val_user($email,$password,$dVueEreur);
+
+			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
+				require($rep.$vues['login']);
+			}
+			else{
+				require ($rep.$vues['main']);
+			}
 		}
 	}
+	
+	function Deconnexion(){
+		global $rep,$vues;
+		$email="";
+		$password="";
+		require($rep.$vues['login']);	
+	}
+	
 
 }//fin class
 

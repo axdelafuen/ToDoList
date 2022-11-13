@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Log In | ToDoList</title>
+  <title>Register | ToDoList</title>
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/login.css">
   <link rel="icon" type="image/x-icon" href="ressources/images/favicon.png" >
@@ -24,8 +24,14 @@
         <span class="form-item material-symbols-outlined">lock</span>
         <input class="form-placeholder" type="password" placeholder="Enter your password" name="password" required> 
       </div>
+      <div>
+        <span class="form-item material-symbols-outlined">lock</span>
+        <input class="form-placeholder" type="password" placeholder="Confirm your password" name="passwordConfirm" required> 
+      </div>
+
+
       <div class="footer-login">
-        <input class="form-submit" type="submit" value="Sign In">
+        <input class="form-submit" type="submit" value="Register">
         
         <?php
         if (isset($dVueEreur) && count($dVueEreur)>0) {
@@ -37,13 +43,12 @@
 
       </div>
       <!-- action !!!!!!!!!! --> 
-      <input type="hidden" name="action" value="validationLogin">
+      <input type="hidden" name="action" value="validationRegister">
       </form>
       <form method="post">
-        <input class="changePage" type="submit" value="Don't have already an account ?">
-
-        <input type="hidden" name="action" value="goRegister">      
-      </form> 
+        <input class="changePage" type="submit" value="You have already an account ?">
+        <input type="hidden" name="action" value="goLogin">
+      </form>
     </div>
   </div>
 </body>
