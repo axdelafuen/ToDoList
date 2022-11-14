@@ -6,7 +6,8 @@ $rep=__DIR__.'/../';
 
 // Variables base de données :
 
-$dsn='mariadb:host=localhost;dbname='.getenv("MARIADB_DATABASE");
+$dbname=getenv("MARIADB_DATABASE");
+$dsn='mariadb:host=localhost;dbname='.$dbname;
 $username=getenv("MARIADB_USER");
 $password=getenv("MARIADB_PASSWORD");
 

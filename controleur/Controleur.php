@@ -49,7 +49,7 @@ class Controleur {
 				
 			case "scriptTable":
 				Admin::createTable();
-				Admin::testTable();
+				//Admin::testTable();
 				break;
 							
 			//mauvaise action

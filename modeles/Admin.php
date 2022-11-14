@@ -1,28 +1,35 @@
 <?php
 
 class Admin{
-    private $conn = new Connection($dsn,'root',getenv("ROOT_PASSWORD"));
-
-    public function createTable():bool{
-    
+    static public function createTable():bool{
+        global $dsn;
+        Debug::log("createTable -> entré");
+        $conn = new Connection($dsn,'root',getenv("MARIADB_ROOT_PASSWORD")); 
+        Debug::log("createTable -> connection créé");
         $requete = "CREATE TABLE User(
             id           numeric PRIMARY_KEY,
             email        varchar(100),
             password     varchar(100)
         );";
+        Debug::log("createTable -> requete créé");
 
-        return $this->conn->executeQuery($requete);
-              
+        $res = $conn->executeQuery($requete);
+
+        Debug::log("createTable -> requete exécuté");
+        
+        return $res;
     }
     
-    public function testTable(){
+    static public function testTable(){
+        global $dsn;
+        $conn = new Connection($dsn,'root',getenv("MARIADB_ROOT_PASSWORD"));         
         $requete = "INSERT INTO _User(id, email, password) VALUES(:id,:email,:password);";
-        $this->conn->executeQuery($requete,array(":id"=>1,
-                                                ":email"=>"fred@fred.com",
-                                                ":password"=>"1234"));
+        $conn->executeQuery($requete,array(":id"=>1,
+                                           ":email"=>"fred@fred.com",
+                                           ":password"=>"1234"));
         $requete2 = "SELECT * FROM _User;";
-        $this->conn->executeQuery($requete2);
-        $res = $this->conn->getResults();
+        $conn->executeQuery($requete2);
+        $res = $conn->getResults();
         echo($res);
     }
 }
