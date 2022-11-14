@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Log In | ToDoList</title>
-  <link rel="stylesheet" type="text/css" href="/styles/style.css">
-  <link rel="stylesheet" type="text/css" href="/styles/login.css">
+  <link rel="stylesheet" type="text/css" href="todo_list-axelde_la_fuente/styles/style.css">
+  <link rel="stylesheet" type="text/css" href="todo_list-axelde_la_fuente/styles/login.css">
   <link rel="icon" type="image/x-icon" href="ressources/images/favicon.png" >
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
