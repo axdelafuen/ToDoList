@@ -18,7 +18,7 @@
             <span class="material-symbols-outlined">format_list_bulleted</span>ToDo List
         </h1>
         <span>Logged as : <u><?= $email?></u></span>
-        <span><br><?php echo "test : ".getenv("HTTP_USER_AGENT").getenv("CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER");?></span>
+        <span><br><?php echo "test : ". phpinfo();?> </span>
     </div>
     <form method="post">
         <input class="disconnect-button" type="submit" value="Se déconnecter">
