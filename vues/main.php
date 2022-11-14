@@ -38,8 +38,8 @@
             <span>Content a a a aa a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a</span>
         </div>
         <div class="todo-content">
-            <h2>Content Title</h2>
-            <p> 
+            <h2 contenteditable="true">Content Title</h2>
+            <p contenteditable="true"> 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id leo tincidunt, eleifend quam id, interdum diam. Suspendisse in metus vitae libero ornare convallis. In sit amet diam eu diam semper sollicitudin. Ut placerat a neque hendrerit rhoncus. Ut nec malesuada libero. Etiam vel ultricies justo, quis posuere neque. Cras imperdiet nisi est, quis efficitur purus ullamcorper id. Duis sollicitudin luctus dictum. Sed ac laoreet nulla. Morbi nec luctus sem. Integer ipsum quam, tincidunt quis ligula vitae, accumsan accumsan ipsum. Praesent non felis a leo dignissim placerat id id nibh. Phasellus mollis pellentesque quam eu tristique. In fermentum consectetur sem, nec posuere ante. Proin efficitur fermentum ultricies. Sed ullamcorper nibh erat, ac efficitur ex vulputate quis.
 
 Cras non convallis risus, vitae porta mi. Suspendisse pharetra dignissim turpis quis aliquam. In mi erat, consequat ut sagittis eget, tincidunt quis nulla. Nam nec est eu turpis suscipit egestas. Mauris non semper purus. In sed est ullamcorper, laoreet nisi in, consectetur dolor. Praesent luctus id nibh quis dignissim. Nulla consectetur nisl nunc, tempus dictum augue imperdiet ut. Phasellus ligula erat, faucibus eu luctus sit amet, scelerisque sed arcu. Donec ante felis, eleifend ac neque eget, eleifend bibendum velit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas tincidunt, urna nec rutrum aliquam, arcu nisl scelerisque lacus, sit amet vestibulum neque massa ac elit. Cras vitae luctus purus, quis mollis ex. Nulla metus nisl, bibendum ac lacus ac, dapibus blandit mauris. Etiam in tempus risus.
@@ -67,6 +67,14 @@ Pellentesque vel malesuada arcu. Phasellus convallis urna a risus aliquam rutrum
 </div>
     <div class="todo-container-footer">
         <span class="todo-new">+</span>
+    </div>
+
+    <div class="todo-container-footer">
+        <span class="todo-save"><span class="material-symbols-outlined">task_alt</span></span>
+    </div>
+
+    <div class="todo-container-footer">
+        <span class="todo-delete"><span class="material-symbols-outlined">delete</span></span>
     </div>
 </body>
 </html> 
