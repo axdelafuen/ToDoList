@@ -40,11 +40,18 @@ class Controleur {
 			case "goLogin":
 				require($rep.$vues['login']);
 				break;
-					
+								
 			case "déconnexion":
 				$this->Deconnexion();
 				break;
-						
+			
+			// action admin 
+				
+			case "scriptTable":
+				Admin::createTable();
+				Admin::testTable();
+				break;
+							
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -106,7 +113,12 @@ class Controleur {
 			Validation::val_user($email,$password,$dVueEreur);
 
 			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
-				require($rep.$vues['login']);
+				if($dVueEreur['email']==="admin"){
+					require($rep.$vues['admin']);
+				}
+				else{
+					require($rep.$vues['login']);
+				}
 			}
 			else{
 				require ($rep.$vues['main']);

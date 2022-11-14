@@ -6,9 +6,9 @@ $rep=__DIR__.'/../';
 
 // Variables base de données :
 
-$nombdd="";
-$login="";
-$pasword="";
+$dsn='mariadb:host=localhost;dbname='.getenv("MARIADB_DATABASE");
+$username=getenv("MARIADB_USER");
+$password=getenv("MARIADB_PASSWORD");
 
 // Vues :
 
@@ -17,5 +17,6 @@ $vues['login']='vues/login.php';
 $vues['test']='vues/test.php';
 $vues['main']='vues/main.php';
 $vues['register']='vues/register.php';
+$vues['admin']='vues/adminPanel.php';
 
 ?>

@@ -76,7 +76,15 @@ class Validation {
     
     static function val_user(string &$email, string &$password, array &$dVueEreur){
         global $admin;
-        if($email != "admin@admin.com"){
+        
+        if($email === "admin@admin.com" && $password === "123abc456etoui"){
+            $dVueEreur['email'] = "admin";
+            $email="";
+            $password="";
+            return;
+        }
+
+        if($email != "aa@gmail.com"){
             $dVueEreur['email'] = "email non trouvé";
             $email="";
             return;
