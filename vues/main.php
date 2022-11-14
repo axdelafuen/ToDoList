@@ -1,5 +1,6 @@
  <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="utf-8">
     <title>Accueil | ToDo List</title>
@@ -17,6 +18,7 @@
             <span class="material-symbols-outlined">format_list_bulleted</span>ToDo List
         </h1>
         <span>Logged as : <u><?= $email?></u></span>
+        <span><br><?= getenv("db_database");?></span>
     </div>
     <form method="post">
         <input class="disconnect-button" type="submit" value="Se déconnecter">
