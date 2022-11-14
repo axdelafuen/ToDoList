@@ -23,7 +23,7 @@ steps:
 - name: deploy-web-container
   image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
   environment:
-    IMAGENAME: hub.codefirst.iut.uca.fr/axel.de_la_fuente/todo_container:latest
+    IMAGENAME: hub.codefirst.iut.uca.fr/axel.de_la_fuente/todo_list:latest
     CONTAINERNAME: todo_list
     COMMAND: create
     OVERWRITE: true
