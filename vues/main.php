@@ -18,7 +18,7 @@
             <span class="material-symbols-outlined">format_list_bulleted</span>ToDo List
         </h1>
         <span>Logged as : <u><?= $email?></u></span>
-        <span><br><?php ehco "test : ".getenv("CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE");?></span>
+        <span><br><?php echo "test : ".getenv("CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE");?></span>
     </div>
     <form method="post">
         <input class="disconnect-button" type="submit" value="Se déconnecter">
