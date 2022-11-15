@@ -4,7 +4,13 @@ class Admin{
     static public function createTable():bool{
         global $dsn;
         Debug::log("createTable -> entré");
-        $conn = new Connection($dsn,'root',getenv("MARIADB_ROOT_PASSWORD")); 
+        
+        try {
+            $conn = new Connection($dsn,'root',getenv("MARIADB_ROOT_PASSWORD")); 
+        } catch (Exception $e) {
+            echo "ERREUR:<br/>".$e->getMessage();
+        }
+        
         Debug::log("createTable -> connection créé");
         $requete = "CREATE TABLE User(
             id           numeric PRIMARY_KEY,
