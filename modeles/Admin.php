@@ -2,13 +2,13 @@
 
 class Admin{
     static public function createTable():bool{
-        global $dsn;
+        global $dsn, $dVueEreur, $vues, $rep;
         Debug::log("createTable -> entré");
-        
         try {
             $conn = new Connection($dsn,'root',getenv("MARIADB_ROOT_PASSWORD")); 
         } catch (Exception $e) {
-            echo "ERREUR:<br/>".$e->getMessage();
+            $dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
+            require($rep.$vues['erreur']);
         }
         
         Debug::log("createTable -> connection créé");
