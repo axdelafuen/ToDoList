@@ -14,7 +14,7 @@ Best ToDo List ever (i swear)
     <br />
     <a href="https://codefirst.iut.uca.fr/git/PHPull/ToDoList/wiki/">Wiki</a>
     ·
-    <a href="#">ToDo List</a>
+    <a href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">ToDo List</a>
 
   </p>
 </div>
