@@ -4,6 +4,11 @@
 <body>
 
 <h1>ERREUR !</h1>
+<style>
+body{
+    overflow:auto;
+}
+</style>
 <?php
 if (isset($dVueEreur))
 {
@@ -11,5 +16,9 @@ if (isset($dVueEreur))
     {
         echo $value;
     }
+    
+    
+    echo phpinfo();
+    
 }
 ?>
