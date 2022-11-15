@@ -7,7 +7,7 @@ $rep=__DIR__.'/../';
 // Variables base de données :
 
 //$dsn='mariadb:host=localhost;dbname='.$dbname;
-$dsn='mariadb:host="https://codefirst.iut.uca.fr/containers/mariadb-axelde_la_fuente";dbname='.getenv("MARIADB_DATABASE");
+$dsn='mysql:host=https://codefirst.iut.uca.fr/containers/mariadb-axelde_la_fuente;dbname='.getenv("MARIADB_DATABASE");
 $username=getenv("MARIADB_USER");
 $password=getenv("MARIADB_PASSWORD");
 
