@@ -2,41 +2,44 @@
 
 class Admin{
     static public function createTable():bool{
-        global $dsn, $dVueEreur, $vues, $rep;
-        Debug::log("createTable -> entré");
-        try {
-            $conn = new Connection($dsn,'root',getenv("MARIADB_ROOT_PASSWORD")); 
-        } catch (Exception $e) {
-            $dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
-            require($rep.$vues['erreur']);
-        }
-        
-        Debug::log("createTable -> connection créé");
+        global $dVueEreur, $vues, $rep, $conn;
+       
         $requete = "CREATE TABLE User(
-            id           numeric PRIMARY_KEY,
+            id           numeric,
             email        varchar(100),
             password     varchar(100)
-        );";
-        Debug::log("createTable -> requete créé");
-
-        $res = $conn->executeQuery($requete);
-
-        Debug::log("createTable -> requete exécuté");
+            );";
         
+        $res = $conn->executeQuery($requete);
+       
         return $res;
     }
     
     static public function testTable(){
-        global $dsn;
-        $conn = new Connection($dsn,'root',getenv("MARIADB_ROOT_PASSWORD"));         
-        $requete = "INSERT INTO _User(id, email, password) VALUES(:id,:email,:password);";
-        $conn->executeQuery($requete,array(":id"=>1,
-                                           ":email"=>"fred@fred.com",
-                                           ":password"=>"1234"));
-        $requete2 = "SELECT * FROM _User;";
+        global $conn;
+        $requete = "INSERT INTO User(id, email, password) VALUES(:id,:email,:password);";
+        $conn->executeQuery($requete,array(":id"=>array(1,PDO::PARAM_INT),
+                                           ":email"=>array("fred@fred.com",PDO::PARAM_STR),
+                                           ":password"=>array("1234",PDO::PARAM_STR)));
+        $requete2 = "SELECT * FROM User;";
         $conn->executeQuery($requete2);
         $res = $conn->getResults();
-        echo($res);
+        foreach($res as $val){
+            echo $val['email'];
+        }
+    }
+    
+    static public function getAllUsers(&$res){
+        global $dsn,$username,$passwordBD;
+        $conn = new Connection($dsn,$username, $passwordBD);
+        $requete2 = "SELECT * FROM User;";
+        $conn->executeQuery($requete2);
+        $res = $conn->getResults();
+        /*
+        foreach($res as $val){
+            echo $val['id']." : ".$val['email']."<br>";
+        }
+        */
     }
 }
 ?>

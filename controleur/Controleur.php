@@ -48,8 +48,7 @@ class Controleur {
 			// action admin 
 				
 			case "scriptTable":
-				Admin::createTable();
-				//Admin::testTable();
+				$this->adminPanel();
 				break;
 							
 			//mauvaise action
@@ -113,7 +112,7 @@ class Controleur {
 			Validation::val_user($email,$password,$dVueEreur);
 
 			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
-				if($dVueEreur['email']==="admin"){
+				if($dVueEreur['email']==="admin" || $dVueEreur['password']==='admin'){
 					require($rep.$vues['admin']);
 				}
 				else{
@@ -124,6 +123,20 @@ class Controleur {
 				require ($rep.$vues['main']);
 			}
 		}
+	}
+	
+	function adminPanel(){
+		global $rep, $vues;
+		try{
+			$res = array();
+			Admin::getAllUsers($res);
+			//Admin::createTable();
+			//Admin::testTable();
+        }catch(Exception $e){
+          		$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
+           		require($rep.$vues['erreur']);
+		}
+		require($rep.$vues['admin']);
 	}
 	
 	function Deconnexion(){

@@ -30,7 +30,7 @@ class Validation {
             return;
         }
         
-        if (!filter_var($password, FILTER_SANITIZE_STRING)){
+        if ($password!=htmlspecialchars($password)){
             $dVueEreur['password'] = "mot de passe invalide";
             $password="";
             $passwordConfirm="";
@@ -75,22 +75,26 @@ class Validation {
     }
     
     static function val_user(string &$email, string &$password, array &$dVueEreur){
-        global $admin;
-        
+        global $dsn, $username, $passwordBD;
+                
         if($email === "admin@admin.com" && $password === "123abc456etoui"){
             $dVueEreur['email'] = "admin";
             $email="";
             $password="";
             return;
         }
+        $conn = new Connection($dsn, $username, $passwordBD);
+        $getUser = new UserGateway($conn);
 
-        if($email != "aa@gmail.com"){
+        if($email != $getUser->getUserByEmail($email)['email']){
             $dVueEreur['email'] = "email non trouvé";
+            $dVueEreur['password'] = "";
             $email="";
             return;
         }
-        if($password != "1234"){
+        if($password != $getUser->getUserByEmail($email)['password']){
             $dVueEreur['password'] = "mot de passe incorrect";
+            $dVueEreur['email'] ="";
             $password="";        }
             return;
     }

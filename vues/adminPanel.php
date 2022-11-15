@@ -28,10 +28,20 @@
     <h3>Pannel administrateur</h3>
 
     <form method="post">
-        <input class="changePage" type="submit" value="Lancer le script de creation des tables">
+        <input class="changePage" type="submit" value="Lancer le script de base de données">
 
         <input type="hidden" name="action" value="scriptTable">      
       </form>
+
+      <?php
+        global $dsn, $username, $passwordBD;
+        if (isset($res)) {
+          foreach ($res as $value){
+            echo $value['id']." : ".$value['email']."<br>";
+          }}
+      ?>
+
+
 </div>
 
 </body>
