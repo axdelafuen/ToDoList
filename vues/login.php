@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <title>Log In | ToDoList</title>
-  <base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
   <link rel="stylesheet" type="text/css" href="styles/login.css">
   <link rel="icon" type="image/x-icon" href="ressources/images/favicon.png" >
