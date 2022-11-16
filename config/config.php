@@ -33,6 +33,20 @@ require_once('modeles/ToDoList.php');
 require_once('modeles/Task.php');
 require_once('modeles/User.php');
 
-$todo = array(new TodoList('MyBigToDo',array(new Task(1,1,false,'Faire cuire des pates'),new Task(2,2,true,'Manger du pain')),new User(1,'fred@fred.com','1234'),false) , new TodoList('MyBigToDo2',array(new Task(1,1,false,'Faire cuire du riz'),new Task(2,2,true,'Acheter des chaussettes')),new User(1,'fred@fred.com','1234'),true));
+$usr1=new User(1,'Catherine@php.com','4321');
+$usr2=new User(1,'fred@fred.com','1234');
+
+$tsk1=new Task( 1,1,false,'Faire cuire des pates');
+$tsk2 = new Task(2,2,true,'Manger du pain');
+$ar1 = array(0=>$tsk1,1=>$tsk2);
+
+$tsk3=new Task( 3,1,false,'Boire');
+$tsk4 = new Task(4,2,false,'Dormir');
+$ar2 = array(0=>$tsk3,1=>$tsk4);
+
+$todo1=new ToDoList("ToDo1",$ar1,$usr1,true);
+$todo2=new ToDoList("ToDo2",$ar2,$usr2,true);
+
+$todo = array(0=>$todo1,1=>$todo2);
 
 ?>

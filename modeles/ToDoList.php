@@ -1,15 +1,20 @@
 <?php
 class ToDoList{
-	private string $name;
-	private array $tasks;
-	private array $users;
-	private bool $visibility;
+	public string $name;
+	public array $tasks;
+	public array $users;
+	public bool $visibility;
 	// Implémenter des task dans une meme ToDoList ?
 	function __construct($name, $tasks, $users, $visibility){
 		$this->name = $name;
-		$this->tasks['task'] = $tasks;
-		$this->users['user']=$users;
+		$this->tasks['tasks'] = $tasks;
+		$this->users['users']=$users;
 		$this->visibility=$visibility;
+	}
+	function displayTasks(){
+		foreach($this->tasks as $task){
+			echo ('<p contenteditable="true">'.$task->description.'</p>');
+		}
 	}
 }
 
