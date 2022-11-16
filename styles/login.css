@@ -10,6 +10,29 @@ body{
   align-items:center;
   margin-top: -8rem;
 }
+.anonymous{
+  right:2rem;
+  top:2rem;
+  position:absolute;
+  background:rgb(67, 67, 67);
+  border-color:rgb(67, 67, 67);
+  text-align: center;
+  color:rgb(255, 255, 255);
+  padding: 1rem 1.5rem;
+  border-radius:100px;
+  border-style:solid;
+  border-size:1rem;
+  transition:.5s;
+}
+
+.anonymous:hover{
+  cursor:pointer;
+  background:white;
+  color:black;
+  border-color:rgb(67, 67, 67);
+
+}
+
 .title{
   font-size:5rem;
   margin:1rem;
@@ -68,7 +91,6 @@ body{
 .form-submit{
   background:rgb(67, 67, 67);
   border-color:rgb(67, 67, 67);
-
   width:100%;
   text-align: center;
   color:rgb(255, 255, 255);

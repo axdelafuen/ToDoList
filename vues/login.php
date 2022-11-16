@@ -9,8 +9,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
-  <div class="login-page">
-    <h1 class="title">
+    <form method="post">
+      <input class="anonymous" type="submit" value="Continue as anonymous">
+      <input type="hidden" name="action" value="logAno">
+    </form>  
+    <div class="login-page">
+      <h1 class="title">
       <span class="material-symbols-outlined">format_list_bulleted</span>ToDo List
     </h1>
     <div class="login-container">
