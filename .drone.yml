@@ -26,7 +26,6 @@ steps:
       IMAGENAME: mariadb:10
       CONTAINERNAME: mariadb
       COMMAND: create
-      PORTS: 8889:80
       # OVERWRITE: true
       # PRIVATE: true
       CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:    

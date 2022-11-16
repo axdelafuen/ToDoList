@@ -9,7 +9,7 @@ $rep=__DIR__.'/../';
 //$dsn='mariadb:host=localhost;dbname='.$dbname;
 
 $host="https://codefirst.iut.uca.fr/containers/mariadb-axelde_la_fuente";
-$dsn='mysql:host=127.0.0.1;port=8889;dbname='.getenv("MARIADB_DATABASE");
+$dsn='mysql:host=127.0.0.1;port=3306;dbname='.getenv("MARIADB_DATABASE");
 $dbname=getenv("MARIADB_DATABASE");
 $username=getenv("MARIADB_USER");
 $passwordBD=getenv("MARIADB_PASSWORD");
