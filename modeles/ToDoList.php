@@ -7,8 +7,8 @@ class ToDoList{
 	// Implémenter des task dans une meme ToDoList ?
 	function __construct($name, $tasks, $users, $visibility){
 		$this->name = $name;
-		$this->tasks = $tasks;
-		$this->users=$users;
+		$this->tasks['task'] = $tasks;
+		$this->users['user']=$users;
 		$this->visibility=$visibility;
 	}
 }
