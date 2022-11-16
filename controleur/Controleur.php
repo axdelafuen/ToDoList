@@ -93,7 +93,13 @@ class Controleur {
 			require($rep.$vues['register']);
 		}
 		else{
-			require ($rep.$vues['main']);
+			Validation::val_userRegister($email,$password, $dVueEreur);
+			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
+				require ($rep.$vues['register']);
+			}
+			else{
+				require ($rep.$vues['main']);
+			}
 		}
 	}
 	

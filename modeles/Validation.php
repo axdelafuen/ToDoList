@@ -66,7 +66,7 @@ class Validation {
             return;
         }
         
-        if (!filter_var($password, FILTER_SANITIZE_STRING)){
+        if ($password!=htmlspecialchars($password)){
             $dVueEreur['password'] = "mot de passe invalide";
             $password="";
             return;
@@ -97,6 +97,21 @@ class Validation {
             $dVueEreur['email'] ="";
             $password="";        }
             return;
+    }
+    
+    static function val_userRegister(string &$email, string &$password, array &$dVueEreur){
+        global $dsn,$username,$passwordBD;
+        $conn = new Connection($dsn,$username,$passwordBD);
+        $getUser = new UserGateway($conn);
+        if($email===$getUser->getUserByEmail($email)['email']){
+            $dVueEreur['email'] = "email deja existante";
+            $dVueEreur['password'] = "";
+            $email = "";
+            $password = "";
+            return;
+        }
+        $getUser->addUser(1,$email,$password);
+
     }
 }
 ?>
