@@ -45,6 +45,10 @@ class Controleur {
 				$this->Deconnexion();
 				break;
 			
+			case "logAno":
+				$this->LogAno();
+				break;
+				
 			// action admin 
 				
 			case "scriptTable":
@@ -150,6 +154,12 @@ class Controleur {
 		$email="";
 		$password="";
 		require($rep.$vues['login']);	
+	}
+	
+	function logAno(){
+		global $rep, $vues;
+		$email='Anonymous';
+		require($rep.$vues['main']);
 	}
 	
 
