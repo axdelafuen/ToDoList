@@ -19,11 +19,21 @@
         </h1>
         <span>Logged as : <u><?= $email?></u></span>
     </div>
-    <form method="post">
-        <input class="disconnect-button" type="submit" value="Se déconnecter">
+    <div class="form-account">
+     <form method="post">
+        <input class="disconnect-button" type="submit" value="Disconnect">
         <input type="hidden" name="action" value="déconnexion">
     </form>
-</div>
+    <?php
+        if($email!='Anonymous'){
+            echo '<form method="post">
+                <input class="disconnect-button" type="submit" value="Edit your account">
+                <input type="hidden" name="action" value="editAccount">
+            </form>';
+        }
+    ?>
+    </div>
+   </div>
 
 <div class="todo-container">
     <div class="todo">

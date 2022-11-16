@@ -49,6 +49,14 @@ class Controleur {
 				$this->LogAno();
 				break;
 				
+			case "editAccount":
+				require($rep.$vues['editAccount']);
+				break;
+				
+			case "back":
+				//require($rep.$vues['main']);
+				break;
+				
 			// action admin 
 				
 			case "scriptTable":
@@ -161,7 +169,6 @@ class Controleur {
 		$email='Anonymous';
 		require($rep.$vues['main']);
 	}
-	
 
 }//fin class
 

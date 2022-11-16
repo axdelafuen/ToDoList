@@ -11,7 +11,10 @@ body{
 .title{
   font-size:3rem;
 }
-
+.form-account{
+  display:flex;
+  flex-direction:row;
+}
 .disconnect-button{
   border:none;
   background:rgba(255,255,255,.5);

@@ -26,6 +26,7 @@ $vues['test']='vues/test.php';
 $vues['main']='vues/main.php';
 $vues['register']='vues/register.php';
 $vues['admin']='vues/adminPanel.php';
+$vues['editAccount']='vues/editAccount.php';
 
 // variables de test :
 
