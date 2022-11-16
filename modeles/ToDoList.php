@@ -1,27 +1,15 @@
 <?php
-
-require('User.php');
-
 class ToDoList{
-	private $name;
-	private $content;
-	private User $user;
-	
-	function _construct($name, $content){
+	private string $name;
+	private array $tasks;
+	private array $users;
+	private bool $visibility;
+	// Implémenter des task dans une meme ToDoList ?
+	function __construct($name, $tasks, $users, $visibility){
 		$this->name = $name;
-		$this->conent = $content;
-	}
-	
-	public function getName(){
-		return $this->name;
-	}
-	
-	public function getContent(){
-		return $this->content;
-	}
-	
-	public function getUser(){
-		return $this->user->getEmail();
+		$this->tasks = $tasks;
+		$this->users=$users;
+		$this->visibility=$visibility;
 	}
 }
 
