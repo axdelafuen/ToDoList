@@ -8,7 +8,7 @@ $rep=__DIR__.'/../';
 
 //$dsn='mariadb:host=localhost;dbname='.$dbname;
 
-$dsn='mysql:10.9.0.63;port=3306;dbname='.getenv("MARIADB_DATABASE");
+$dsn='mysql:host=10.9.0.63;port=3306;dbname='.getenv("MARIADB_DATABASE");
 $dbname=getenv("MARIADB_DATABASE");
 $username=getenv("MARIADB_USER");
 $passwordBD=getenv("MARIADB_PASSWORD");
