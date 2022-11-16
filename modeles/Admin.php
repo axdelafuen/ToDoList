@@ -2,7 +2,8 @@
 
 class Admin{
     static public function createTable():bool{
-        global $dVueEreur, $vues, $rep, $conn;
+        global $dsn,$username,$passwordBD;
+        $conn = new Connection($dsn,$username, $passwordBD);
        
         $requete = "CREATE TABLE User(
             id           numeric,
