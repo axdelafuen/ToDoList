@@ -7,18 +7,18 @@ $rep=__DIR__.'/../';
 // Variables base de données :
 
 //$dsn='mariadb:host=localhost;dbname='.$dbname;
+/*
 $host="https://codefirst.iut.uca.fr/containers/mariadb-axelde_la_fuente";
 $dsn='mysql:host=https://codefirst.iut.uca.fr/containers/mariadb-axelde_la_fuente;dbname='.getenv("MARIADB_DATABASE");
 $dbname=getenv("MARIADB_DATABASE");
 $username=getenv("MARIADB_USER");
 $passwordBD=getenv("MARIADB_PASSWORD");
+*/
 
-/*
 $host="localhost";
 $dsn='mysql:host='.$host.';dbname=phPull';
 $username='axlr';
 $passwordBD='1234';
-*/
 
 // Vues :
 
