@@ -147,8 +147,8 @@ class Controleur {
 		global $rep, $vues;
 		try{
 			$res = array();
-			//Admin::getAllUsers($res);
-			Admin::createTable();
+			Admin::getAllUsers($res);
+			//Admin::createTable();
 			//Admin::testTable();
         }catch(Exception $e){
           		$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();

@@ -11,11 +11,11 @@ $rep=__DIR__.'/../';
 $host="https://codefirst.iut.uca.fr/containers/mariadb-axelde_la_fuente";
 $dsn='mysql:host=10.9.0.63;port=3306;dbname='.getenv("MARIADB_DATABASE");
 $dbname=getenv("MARIADB_DATABASE");
-//$username=getenv("MARIADB_USER");
-//$passwordBD=getenv("MARIADB_PASSWORD");
+$username=getenv("MARIADB_USER");
+$passwordBD=getenv("MARIADB_PASSWORD");
 
-$username="root";
-$passwordBD=getenv("MARIADB_ROOT_PASSWORD");
+//$username="root";
+//$passwordBD=getenv("MARIADB_ROOT_PASSWORD");
 
 /*
 $host="localhost";
