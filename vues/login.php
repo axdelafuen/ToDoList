@@ -10,8 +10,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
-    <?=  getenv("MARIADBPASSWORD") ?>
-    <?=  getenv("MARIADBUSERNAME") ?>
+    <?php  
+      echo "<h1>CACA<h1>";
+      echo getenv("MARIADBPASSWORD"); 
+      echo getenv("MARIADBUSERNAME");
+    ?>
     <form method="post">
       <input class="anonymous" type="submit" value="Continue as anonymous">
       <input type="hidden" name="action" value="logAno">
