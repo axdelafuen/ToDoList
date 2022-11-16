@@ -1,7 +1,7 @@
 <?php
 
 class Admin{
-    static public function createTable():bool{
+    static public function createTable(){
         global $dsn, $username,$passwordBD;
         $conn = new Connection($dsn,$username, $passwordBD);
        
