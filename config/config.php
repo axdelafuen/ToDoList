@@ -29,7 +29,7 @@ $vues['admin']='vues/adminPanel.php';
 
 // variables de test :
 
-require_once('modeles/TodoList.php');
+require_once('modeles/ToDoList.php');
 require_once('modeles/Task.php');
 require_once('modeles/User.php');
 
