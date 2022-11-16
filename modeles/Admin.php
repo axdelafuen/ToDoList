@@ -1,9 +1,9 @@
 <?php
 
 class Admin{
-    static public function createTable():bool{
-        global $dsn, $dbname, $host, $username,$passwordBD;
-        $conn = new mysqli($host,$username, $passwordBD, $dbname);
+    static public function createTable(){
+        global $dsn, $username,$passwordBD;
+        $conn = new Connection($dsn,$username, $passwordBD);
        
         $requete = "CREATE TABLE User(
             id           numeric,

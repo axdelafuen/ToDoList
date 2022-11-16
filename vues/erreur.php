@@ -18,7 +18,7 @@ if (isset($dVueEreur))
     }
     
     
-    echo phpinfo();
+    // echo phpinfo();
     
 }
 ?>
