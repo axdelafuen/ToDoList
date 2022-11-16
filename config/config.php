@@ -35,5 +35,4 @@ require_once('modeles/User.php');
 
 $todo = array(new TodoList('MyBigToDo',array(new Task(1,1,false,'Faire cuire des pates'),new Task(2,2,true,'Manger du pain')),new User(1,'fred@fred.com','1234'),false) , new TodoList('MyBigToDo2',array(new Task(1,1,false,'Faire cuire du riz'),new Task(2,2,true,'Acheter des chaussettes')),new User(1,'fred@fred.com','1234'),true));
 
-
 ?>
