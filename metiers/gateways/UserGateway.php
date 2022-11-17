@@ -39,6 +39,9 @@ class UserGateway
 		
 	}
 	
-	
+	public function deleteAllUsers(){
+		$requete = "DELETE * FROM User;";
+		return $this->conn->executeQuery($requete);
+	}
 }
 ?>

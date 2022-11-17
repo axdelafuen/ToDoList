@@ -6,7 +6,7 @@ class Admin{
         $conn = new Connection($dsn,$username, $passwordBD);
        
         $requete = "CREATE TABLE User(
-            id           numeric,
+            id           INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             email        varchar(100),
             password     varchar(100)
             );";
@@ -41,6 +41,13 @@ class Admin{
             echo $val['id']." : ".$val['email']."<br>";
         }
         */
+    }
+    
+    static public function dropUserTable(){
+        global $dsn, $username, $passwordBD;
+        $conn = new Connection($dsn,$username,$passwordBD);
+        $requete = "DROP TABLE User;";
+        $conn->executeQuery($requete);
     }
 }
 ?>

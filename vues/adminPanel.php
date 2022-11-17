@@ -41,6 +41,11 @@
           }}
       ?>
 
+     <form method="post">
+        <input class="changePage" type="submit" value="Rénitialiser les tables">
+
+        <input type="hidden" name="action" value="dropTableUser">      
+      </form>
 
 </div>
 
