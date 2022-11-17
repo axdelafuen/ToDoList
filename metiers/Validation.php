@@ -100,7 +100,7 @@ class Validation {
     }
     
     static function val_userRegister(string &$email, string &$password, array &$dVueEreur){
-        global $dsn,$username,$passwordBD;
+        global $dsn,$username,$passwordBD, $rep, $vues;
         $conn = new Connection($dsn,$username,$passwordBD);
         $getUser = new UserGateway($conn);
         if($email===$getUser->getUserByEmail($email)['email']){
