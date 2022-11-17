@@ -31,10 +31,9 @@ class UserGateway
 		
 	}
 	
-	public function addUser($id, $email,$password):bool{
-		$requete = "INSERT INTO User(id, email, password) VALUES(:id,:email,:password);";
-		return $this->conn->executeQuery($requete,array(":id"=>(array($id,PDO::PARAM_INT)),
-														":email"=>(array($email,PDO::PARAM_STR)),
+	public function addUser($email,$password):bool{
+		$requete = "INSERT INTO User(email, password) VALUES(:email,:password);";
+		return $this->conn->executeQuery($requete,array(":email"=>(array($email,PDO::PARAM_STR)),
 														":password"=>(array($password,PDO::PARAM_STR))));
 		
 	}
