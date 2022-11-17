@@ -111,7 +111,7 @@ class Validation {
             return;
         }
         try{
-            $getUser->addUser(1,$email,$password);
+            $getUser->addUser($email,$password);
         }catch(Exception $e){
             $dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
             require($rep.$vues['erreur']);
