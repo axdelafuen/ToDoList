@@ -110,7 +110,12 @@ class Validation {
             $password = "";
             return;
         }
-        $getUser->addUser(1,$email,$password);
+        try{
+            $getUser->addUser(1,$email,$password);
+        }catch(Exception $e){
+            $dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
+            require($rep.$vues['erreur']);
+        }
 
     }
 }
