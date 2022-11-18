@@ -52,5 +52,4 @@ steps:
       from_secret: db_user
     CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
       from_secret: db_password
-
   depends_on: [ web-todo, deploy-container-mysql ]
