@@ -47,7 +47,14 @@
         <input type="hidden" name="action" value="dropTableUser">      
       </form>
 
-    <?= phpinfo()?>
+    
+    <form method="post">
+        <input class="changePage" type="submit" value="Générer les tables">
+
+        <input type="hidden" name="action" value="CreateTableUser">      
+      </form>
+
+    <!--<?= phpinfo()?>-->
 
 </div>
 

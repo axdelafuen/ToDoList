@@ -66,6 +66,10 @@ class Controleur {
 			case "dropTableUser":
 				$this->adminDrop();
 				break;
+				
+			case "CreateTableUser":
+				$this->adminCreate();
+				break;
 							
 			//mauvaise action
 			default:
@@ -165,6 +169,18 @@ class Controleur {
 		global $rep, $vues;
 		try{
 			Admin::dropUserTable();
+			//Admin::createTable();
+		}catch(Exception $e){
+			$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
+           	require($rep.$vues['erreur']);
+		}
+		require($rep.$vues['admin']);
+	}
+	
+	function adminCreate(){
+		global $rep, $vues;
+		try{
+			//Admin::dropUserTable();
 			Admin::createTable();
 		}catch(Exception $e){
 			$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
