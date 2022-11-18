@@ -8,18 +8,6 @@ trigger:
 
 steps:
 
-- name : deploy-phpmyadmin
-  image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-  environment:
-    IMAGENAME: phpmyadmin/phpmyadmin:latest
-    CONTAINERNAME: phpmyadmin
-    COMMAND: create
-    PMA_ARBITRARY: 1
-    PMA_HOST: mariadb-axelde_la_fuente
-    PMA_USER: axel.de_la_fuente
-    PMA_PASSWORD: "1234"
-    UPLOAD_LIMIT: 20M
-
 - name: deploy-container-mysql
   image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
   environment:
