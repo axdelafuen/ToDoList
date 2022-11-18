@@ -22,10 +22,7 @@ Best ToDo List ever (i swear)
 About the project
 ===
 
-.....
-
-.....
-
+The best minimalist ToDo List you'll ever see.
 
 Getting started
 ===
