@@ -11,7 +11,7 @@ $rep=__DIR__.'/../';
 //$dsn='mysql:host=10.9.0.63;port=3306;dbname='.getenv("MARIADB_DATABASE");
 //$dsn='mysql:host=codefirst.iut.uca.fr;port=3306;dbname='.getenv("MARIADB_DATABASE");
 //$dsn='mysql: host=codefirst.iut.uca.fr:3306; dbname='.getenv("MARIADB_DATABASE");
-$dsn='mysql: host=10.9.0.62:3306; dbname='.getenv("MARIADB_DATABASE");
+$dsn='mysql: host=10.9.0.62; port=3306; dbname='.getenv("MARIADB_DATABASE");
 $dbname=getenv("MARIADB_DATABASE");
 $username=getenv("MARIADB_USER");
 $passwordBD=getenv("MARIADB_PASSWORD");
