@@ -47,6 +47,8 @@
         <input type="hidden" name="action" value="dropTableUser">      
       </form>
 
+    <?= phpinfo()?>
+
 </div>
 
 </body>
