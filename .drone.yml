@@ -24,7 +24,8 @@ steps:
         from_secret: db_user
       CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
         from_secret: db_password
-
+      PORT: 3306
+  
 - name: web-todo
   image: plugins/docker
   settings:
