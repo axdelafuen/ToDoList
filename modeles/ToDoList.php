@@ -5,10 +5,10 @@ class ToDoList{
 	public array $users;
 	public bool $visibility;
 	// Implémenter des task dans une meme ToDoList ?
-	function __construct($name, $tasks, $users, $visibility){
+	function __construct($name,$tasks,$users, $visibility){
 		$this->name = $name;
-		$this->tasks['tasks'] = $tasks;
-		$this->users['users']=$users;
+		$this->tasks['tsk'] = $tasks;
+		$this->users['usr']=$users;
 		$this->visibility=$visibility;
 	}
 	function displayTasks(){

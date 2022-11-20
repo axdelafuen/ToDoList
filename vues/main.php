@@ -35,16 +35,21 @@
             $tsk1=new Task( 1,1,false,'Faire cuire des pates');
             $tsk2 = new Task(2,2,true,'Manger du pain');
             $tsk5 = new Task(2,2,true,'Manger du pain');
-            $ar1 = array(0=>$tsk1,1=>$tsk2,2=>$tsk5);
+            $ar1 = array();
+            $ar1[]=$tsk1;
+            $ar1[]=$tsk2;
+            $ar1[]=$tsk5;
 
             $tsk3=new Task( 3,1,false,'Boire');
             $tsk4 = new Task(4,2,false,'Dormir');
-            $ar2 = array(0=>$tsk3,1=>$tsk4);
+            $ar2 = array($tsk3,$tsk4);
 
             $todo1=new ToDoList("ToDo1",$ar1,$usrAr,true);
             $todo2=new ToDoList("ToDo2",$ar2,$usrAr,true);
 
-            $todo = array(0=>$todo1,1=>$todo2);
+            $todo = array();
+            $todo[]=$todo1;
+            $todo[]=$todo2;
 
             //script display all ToDo
             // add the form
@@ -55,21 +60,11 @@
             echo ('</div>');
             $selectedToDo=$todo[0];
             echo ('<div class="todo-content"><h2 contenteditable="true">'.$selectedToDo->name.'</h2> <p contenteditable="true">');
-            foreach($todo[0]->tasks as $taskP){
+            foreach($selectedToDo->tasks['tsk'] as $taskP){
                 echo ('<p contenteditable="true">'.$taskP->description.'</p>');
             }
-            // $selectedToDo->displayTasks();
             echo ('</p></div>');
         ?>
-        <!-- <div class="todo-sidebar">
-            <span>Content</span>
-        </div> 
-        <div class="todo-content">
-            <h2 contenteditable="true">Content Title</h2>
-            <p contenteditable="true"> 
-                Lorem ipsum 
-            </p>
-        </div> -->
     </div>
     
 </div>
