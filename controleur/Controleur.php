@@ -88,6 +88,7 @@ class Controleur {
 		global $rep,$vues;
 
 		//si exception, ca remonte !!!
+		// faire en amont le isset pour verifier que le champ ne soit pas vide
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
 		$passwordConfirm=$_POST['passwordConfirm'];

@@ -50,8 +50,8 @@ $tsk3=new Task( 3,1,false,'Boire');
 $tsk4 = new Task(4,2,false,'Dormir');
 $ar2 = array($tsk3,$tsk4);
 
-$todo1=new ToDoList("ToDo1",$ar1,$usrAr,true);
-$todo2=new ToDoList("ToDo2",$ar2,$usrAr,true);
+$todo1=new ToDoList(0,"ToDo1",$ar1,$usrAr,true);
+$todo2=new ToDoList(1,"ToDo2",$ar2,$usrAr,true);
 
 $todo = array();
 $todo[]=$todo1;

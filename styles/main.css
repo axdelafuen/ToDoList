@@ -43,11 +43,17 @@ body{
   max-height:35rem;
   overflow-y:auto;
 }
-.todo-sidebar span{
+.todo-title {
   margin-bottom:1rem;
   padding:.8rem;
   background:rgba(255,255,255,0.4);
   border-radius:10px;
+  border: none;
+  transition: .5s;
+}
+.todo-title:hover {
+  background:white;
+  cursor: pointer;
 }
 .todo-content{
   margin:0 3rem;

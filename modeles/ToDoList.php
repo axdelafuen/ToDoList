@@ -1,11 +1,13 @@
 <?php
 class ToDoList{
+	public int $id;
 	public string $name;
 	public array $tasks;
 	public array $users;
 	public bool $visibility;
 	// Implémenter des task dans une meme ToDoList ?
-	function __construct($name,$tasks,$users, $visibility){
+	function __construct($id,$name,$tasks,$users, $visibility){
+		$this->id = $id;
 		$this->name = $name;
 		$this->tasks['tsk'] = $tasks;
 		$this->users['usr']=$users;

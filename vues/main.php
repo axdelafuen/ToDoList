@@ -28,48 +28,23 @@
     <div class="todo">
         <?php
             // global var
-            $usr1=new User(1,'Catherine@php.com','4321');
-            $usr2=new User(1,'fred@fred.com','1234');
-            $usrAr= array(0=>$usr1,1=>$usr2);
-
-            $tsk1=new Task( 1,1,false,'Faire cuire des pates');
-            $tsk2 = new Task(2,2,true,'Manger du pain');
-            $tsk5 = new Task(2,2,true,'Manger du pain');
-            $ar1 = array();
-            $ar1[]=$tsk1;
-            $ar1[]=$tsk2;
-            $ar1[]=$tsk5;
-
-            $tsk3=new Task( 3,1,false,'Boire');
-            $tsk4 = new Task(4,2,false,'Dormir');
-            $ar2 = array($tsk3,$tsk4);
-
-            $todo1=new ToDoList("ToDo1",$ar1,$usrAr,true);
-            $todo2=new ToDoList("ToDo2",$ar2,$usrAr,true);
-
-            $todo = array();
-            $todo[]=$todo1;
-            $todo[]=$todo2;
-
+            global $todo;
             //script display all ToDo
-            // add the form
+            echo('<form class="login-form" method="get">');
             echo ('<div class="todo-sidebar">');
-            foreach ($todo as $value) {
-                echo ('<span>'.$value->name.'</span>');
+
+            foreach ($todo as $value) {// all todo
+                echo ('<input class="todo-title" type="submit" value='.$value->name.'> <input type="hidden" name="id" value='.$value->id.'> <input type="hidden" name="action" value="DispToDo">');
             }
             echo ('</div>');
+            echo('</form>');
             $selectedToDo=$todo[0];
-            echo ('<div class="todo-content"><h2 contenteditable="true">'.$selectedToDo->name.'</h2> <p contenteditable="true">');
-            foreach($selectedToDo->tasks['tsk'] as $taskP){
-                // echo('<label class="container">);
-                // echo('<input type="checkbox" checked="checked">');
-                // echo('<p contenteditable="true">'.$taskP->description.'</p>');
-                // echo('</label>');
+            echo ('<div class="todo-content"><h2 contenteditable="true">'.$selectedToDo->name.'</h2>');
+            foreach($selectedToDo->tasks['tsk'] as $taskP){// alltasks in the todo selected
                 echo('<div class="line">');
                 echo('<input type="checkbox">');
                 echo('<p id="tess" contenteditable="true">'.$taskP->description.'</p>');
                 echo('</div>');
-
             }
             echo ('</p></div>');
         ?>
