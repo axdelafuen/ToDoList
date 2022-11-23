@@ -33,20 +33,28 @@ require_once('modeles/ToDoList.php');
 require_once('modeles/Task.php');
 require_once('modeles/User.php');
 
+// global var
 $usr1=new User(1,'Catherine@php.com','4321');
 $usr2=new User(1,'fred@fred.com','1234');
+$usrAr= array(0=>$usr1,1=>$usr2);
 
 $tsk1=new Task( 1,1,false,'Faire cuire des pates');
 $tsk2 = new Task(2,2,true,'Manger du pain');
-$ar1 = array(0=>$tsk1,1=>$tsk2);
+$tsk5 = new Task(2,2,true,'Manger du pain');
+$ar1 = array();
+$ar1[]=$tsk1;
+$ar1[]=$tsk2;
+$ar1[]=$tsk5;
 
 $tsk3=new Task( 3,1,false,'Boire');
 $tsk4 = new Task(4,2,false,'Dormir');
-$ar2 = array(0=>$tsk3,1=>$tsk4);
+$ar2 = array($tsk3,$tsk4);
 
-$todo1=new ToDoList("ToDo1",$ar1,$usr1,true);
-$todo2=new ToDoList("ToDo2",$ar2,$usr2,true);
+$todo1=new ToDoList("ToDo1",$ar1,$usrAr,true);
+$todo2=new ToDoList("ToDo2",$ar2,$usrAr,true);
 
-$todo = array(0=>$todo1,1=>$todo2);
+$todo = array();
+$todo[]=$todo1;
+$todo[]=$todo2;
 
 ?>

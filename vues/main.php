@@ -61,7 +61,15 @@
             $selectedToDo=$todo[0];
             echo ('<div class="todo-content"><h2 contenteditable="true">'.$selectedToDo->name.'</h2> <p contenteditable="true">');
             foreach($selectedToDo->tasks['tsk'] as $taskP){
-                echo ('<p contenteditable="true">'.$taskP->description.'</p>');
+                // echo('<label class="container">);
+                // echo('<input type="checkbox" checked="checked">');
+                // echo('<p contenteditable="true">'.$taskP->description.'</p>');
+                // echo('</label>');
+                echo('<div class="line">');
+                echo('<input type="checkbox">');
+                echo('<p id="tess" contenteditable="true">'.$taskP->description.'</p>');
+                echo('</div>');
+
             }
             echo ('</p></div>');
         ?>
