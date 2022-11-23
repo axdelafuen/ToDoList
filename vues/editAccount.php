@@ -33,7 +33,7 @@
 
 <div>
     <h3>Edit your account</h3>
-    <?php global $email; $email?>
+    <?php global $email; echo $email;?>
     <div class="edit-menu">
         <form method="post">
             <div class="edit-form">
