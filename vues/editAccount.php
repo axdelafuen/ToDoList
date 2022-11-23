@@ -32,8 +32,7 @@
 </div>
 
 <div>
-    <h3>Edit your account</h3>
-    <?php global $email; echo $email;?>
+    <h3>Edit your account <?= $email ?> </h3>
     <div class="edit-menu">
         <form method="post">
             <div class="edit-form">
