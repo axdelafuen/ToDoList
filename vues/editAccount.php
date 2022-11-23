@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Accueil | ToDo List</title>
-    <!--<base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">-->
-    <base href="../">
+    <base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="styles/editAccount.css">
@@ -34,14 +33,14 @@
 
 <div>
     <h3>Edit your account</h3>
-    <?= $email?>
+    <?php global $email; $email?>
     <div class="edit-menu">
         <form method="post">
             <div class="edit-form">
                 <span class="material-symbols-outlined">warning</span>
                 <input class="editAccount" type="submit" value="Change password">
             </div>
-            <input type="hidden" name="action" value="DeleteAccount">      
+            <input type="hidden" name="action" value="ChangePassword">      
         </form>
 
         <form method="post">
@@ -56,3 +55,12 @@
 
 </body>
 </html>
+
+<!--
+foreach
+    echo
+    <input type="submit" value=$nomToDo >
+    <input type="hidden" name="idToDo" value=$idToDo >
+    <input type="hidden" name="action" value="DispToDo" >
+}
+-->
