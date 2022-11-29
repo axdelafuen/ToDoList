@@ -15,7 +15,7 @@ steps:
       CONTAINERNAME: mariadb
       COMMAND: create
       # OVERWRITE: true
-      # PRIVATE: true
+      PRIVATE: true
       CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:    
         from_secret: db_root_password
       CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:
@@ -44,6 +44,8 @@ steps:
     CONTAINERNAME: todo_list
     COMMAND: create
     OVERWRITE: true
+    CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
+      from_secret: db_server
     CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:    
       from_secret: db_root_password
     CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:
