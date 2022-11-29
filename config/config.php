@@ -6,18 +6,11 @@ $rep=__DIR__.'/../';
 
 // Variables base de données :
 
-//$dsn='mariadb:host=localhost;dbname='.$dbname;
-
-//$dsn='mysql: host=https://codefirst.iut.uca.fr/containers/mariadb-axelde_la_fuente/;port=3306; dbname='.getenv("MARIADB_DATABASE");
-//$dsn='mysql: host=codefirst.iut.uca.fr/containers/mariadb-axelde_la_fuente/;port=8080;charset=utf8;dbname='.getenv("MARIADB_DATABASE");
-//$dsn='mysql:host=10.9.0.64;port=3306;dbname='.getenv("MARIADB_DATABASE");
-$dsn='mysql:host=10.9.0.64;dbname='.getenv("MARIADB_DATABASE");
+$dsn='mysql:host='.getenv("DB_SERVER").';dbname='.getenv("MARIADB_DATABASE");
 $dbname=getenv("MARIADB_DATABASE");
 $username=getenv("MARIADB_USER");
 $passwordBD=getenv("MARIADB_PASSWORD");
 
-//$username="root";
-//$passwordBD=getenv("MARIADB_ROOT_PASSWORD");
 
 /*
 $host="localhost";
