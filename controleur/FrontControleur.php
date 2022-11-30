@@ -127,7 +127,8 @@ class FrontControleur {
 				require ($rep.$vues['register']);
 			}
 			else{
-				require ($rep.$vues['registerValide']);
+				$dVueEreur[] = 'You\'re now register, you can login !';
+				require ($rep.$vues['login']);
 			}
 		}
 	}
