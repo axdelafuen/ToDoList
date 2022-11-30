@@ -22,7 +22,7 @@ class Controleur {
 
 			switch($action) {
 
-			//pas d'action, on r�initialise 1er appel
+			//pas d'action, on r<EFBFBD>initialise 1er appel
 			case NULL:
 				$this->Reinit();
 				break;
@@ -145,9 +145,9 @@ class Controleur {
 			Admin::getAllUsers($res);
 			//Admin::createTable();
 			//Admin::testTable();
-        }catch(Exception $e){
-          		$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
-           		require($rep.$vues['erreur']);
+		}catch(Exception $e){
+				$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
+				require($rep.$vues['erreur']);
 		}
 		$user = new User(0,"Admin","");
 		require($rep.$vues['admin']);
