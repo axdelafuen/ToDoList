@@ -24,7 +24,7 @@
         <input type="hidden" name="action" value="déconnexion">
     </form>
     <?php
-        if($email!='Anonymous'){
+        if($user->email!='Anonymous'){
             echo '<form method="post">
                 <input class="disconnect-button" type="submit" value="Edit your account">
                 <input type="hidden" name="action" value="editAccount">
