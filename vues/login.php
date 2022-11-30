@@ -31,7 +31,12 @@
       </div>
       <div class="footer-login">
         <input class="form-submit" type="submit" value="Sign In">
-        
+        <?php
+        if (isset($dVueAnnonce) && count($dVueAnnonce)>0) {
+          foreach ($dVueAnnonce as $value){
+            echo $value;
+          }}
+        ?>
         <?php
         if (isset($dVueEreur) && count($dVueEreur)>0) {
           echo "Erreur : ";

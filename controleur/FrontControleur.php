@@ -10,6 +10,7 @@ class FrontControleur {
 
 		//on initialise un tableau d'erreur
 		$dVueEreur = array ();
+		$dVueAnnonce = array ();
 
 		try{
 			if(isset($_REQUEST['action'])){
@@ -31,7 +32,7 @@ class FrontControleur {
 				break;
 			
 			case "validationRegister":
-				$this->ValidationFormulaireRegister($dVueEreur);
+				$this->ValidationFormulaireRegister($dVueEreur, $dVueAnnonce);
 				break;
 			case "goRegister":
 				require($rep.$vues['register']);
@@ -109,7 +110,7 @@ class FrontControleur {
 		require ($rep.$vues['login']);
 	}
 
-	function ValidationFormulaireRegister(array $dVueEreur) {
+	function ValidationFormulaireRegister(array $dVueEreur, array $dVueAnnonce){
 		global $rep,$vues;
 
 		//si exception, ca remonte !!!
@@ -127,7 +128,7 @@ class FrontControleur {
 				require ($rep.$vues['register']);
 			}
 			else{
-				$dVueEreur[] = 'You\'re now register, you can login !';
+				$dVueAnnonce[] = 'You\'re now register, you can login !';
 				require ($rep.$vues['login']);
 			}
 		}
