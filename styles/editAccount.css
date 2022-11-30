@@ -1,0 +1,28 @@
+.edit-menu{
+  margin-top:2rem;
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+}
+
+.edit-form{
+  display:flex;
+}
+.editAccount{
+  background:rgba(255,255,255,0.4);
+  border:none;
+  outline:none;
+  padding:1rem 1.5rem;
+  padding-left:calc(1rem * 3);
+  border-radius:100px;
+  transition:.5s;
+}
+.editAccount:hover{
+  background:white;
+  cursor:pointer;
+}
+.edit-form span{
+  position: absolute;
+  padding-left: 1rem;
+  padding-top:.7rem;
+}

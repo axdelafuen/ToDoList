@@ -11,6 +11,6 @@ Autoload::charger();
 
 // Chargement de la vue : 
 
-$cont = new Controleur();
+$cont = new FrontControleur();
 
 ?>

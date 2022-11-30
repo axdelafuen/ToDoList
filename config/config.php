@@ -41,7 +41,7 @@ $usr1=new User(1,'Catherine@php.com','4321');
 $usr2=new User(1,'fred@fred.com','1234');
 $usrAr= array(0=>$usr1,1=>$usr2);
 
-$tsk1 = new Task( 1,1,false,'Faire cuire des pates');
+$tsk1=new Task( 1,1,false,'Faire cuire des pates');
 $tsk2 = new Task(2,2,true,'Manger du pain');
 $tsk5 = new Task(2,2,true,'Manger du pain');
 $ar1 = array();

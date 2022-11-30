@@ -1,7 +1,6 @@
 <?php
 
-class Controleur {
-
+class FrontControleur {
 	function __construct() {
 		global $rep,$vues; // nécessaire pour utiliser variables globales
 		// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
@@ -22,6 +21,7 @@ class Controleur {
 
 			switch($action) {
 
+			//pas d'action, on r�initialise 1er appel
 			case NULL:
 				$this->Reinit();
 				break;
@@ -41,30 +41,41 @@ class Controleur {
 				break;
 								
 			case "déconnexion":
-				$this->Deconnexion();
+				$cont = new UserControleur($action);
+				//$this->Deconnexion();
 				break;
 			
 			case "logAno":
 				$this->LogAno();
 				break;
 				
+			case "editAccount":
+				$cont = new UserControleur($action);
+				require($rep.$vues['editAccount']);
+				break;
+				
+			case "back":
+				$cont = new UserControleur($action);
+				//require($rep.$vues['main']);
+				break;
+				
 			// action admin 
 				
 			case "scriptTable":
-				$this->adminPanel();
+				$cont = new AdminControleur($action);
+				//$this->adminPanel();
 				break;
 				
 			case "dropTableUser":
-				$this->adminDrop();
+				$cont = new AdminControleur($action);
+				//$this->adminDrop();
 				break;
 				
 			case "CreateTableUser":
+				$cont = new AdminControleur($action);
 				//$this->adminCreate();
 				break;
 							
-			case "DispToDo":
-				$this->displayToDoSelected();
-				break;				
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -98,7 +109,6 @@ class Controleur {
 		global $rep,$vues;
 
 		//si exception, ca remonte !!!
-		// faire en amont le isset pour verifier que le champ ne soit pas vide
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
 		$passwordConfirm=$_POST['passwordConfirm'];
@@ -113,13 +123,14 @@ class Controleur {
 				require ($rep.$vues['register']);
 			}
 			else{
-				require ($rep.$vues['main']);
+				require ($rep.$vues['registerValide']);
 			}
 		}
 	}
 	
 	function ValidationFormulaireLogin(array $dVueEreur) {
-		global $rep,$vues,$user;
+		global $rep,$vues;
+
 		//si exception, ca remonte !!!
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
@@ -140,62 +151,18 @@ class Controleur {
 				}
 			}
 			else{
-				$user=new User(2,$email,$password);
 				require ($rep.$vues['main']);
 			}
 		}
 	}
-	
-	function adminPanel(){
-		global $rep, $vues;
-		try{
-			$res = array();
-			Admin::getAllUsers($res);
-			//Admin::createTable();
-			//Admin::testTable();
-        }catch(Exception $e){
-          		$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
-           		require($rep.$vues['erreur']);
-		}
-		$user = new User(0,"Admin","");
-		require($rep.$vues['admin']);
-	}
-	
-	function adminDrop(){
-		global $rep, $vues;
-		try{
-			Admin::dropUserTable();
-			//Admin::createTable();
-		}catch(Exception $e){
-				$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
-				require($rep.$vues['erreur']);
-		}
-		$user = new User(0,"Admin","");
-		require($rep.$vues['admin']);
-	}
-	
-	function Deconnexion(){
-		global $rep,$vues;
-		$email="";
-		$password="";
-		require($rep.$vues['login']);
-		$user = null;
-	}
-	
+			
 	function logAno(){
-		global $rep, $vues, $user ;
+		global $rep, $vues;
 		$email='Anonymous';
-		$user = new User(1,"Anonymous","");
 		require($rep.$vues['main']);
 	}
-	function displayToDoSelected(){
-		$id=$_POST['id']; 
-		global $selectedToDo,$rep,$vues,$user;
-		$selectedToDo=$id;
-		require($rep.$vues['main']);
-	}
-	
 
 }//fin class
 
+	
 ?>
