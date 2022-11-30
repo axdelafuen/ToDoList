@@ -22,7 +22,6 @@ class Controleur {
 
 			switch($action) {
 
-			//pas d'action, on r<EFBFBD>initialise 1er appel
 			case NULL:
 				$this->Reinit();
 				break;
