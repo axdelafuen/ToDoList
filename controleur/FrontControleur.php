@@ -1,9 +1,8 @@
 <?php
 
 class FrontControleur {
-
 	function __construct() {
-		global $rep,$vues,$cont; // nécessaire pour utiliser variables globales
+		global $rep,$vues; // nécessaire pour utiliser variables globales
 		// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
 		session_start();
 
@@ -41,10 +40,42 @@ class FrontControleur {
 				require($rep.$vues['login']);
 				break;
 								
+			case "déconnexion":
+				$cont = new UserControleur($action);
+				//$this->Deconnexion();
+				break;
+			
 			case "logAno":
 				$this->LogAno();
 				break;
-			
+				
+			case "editAccount":
+				$cont = new UserControleur($action);
+				require($rep.$vues['editAccount']);
+				break;
+				
+			case "back":
+				$cont = new UserControleur($action);
+				//require($rep.$vues['main']);
+				break;
+				
+			// action admin 
+				
+			case "scriptTable":
+				$cont = new AdminControleur($action);
+				//$this->adminPanel();
+				break;
+				
+			case "dropTableUser":
+				$cont = new AdminControleur($action);
+				//$this->adminDrop();
+				break;
+				
+			case "CreateTableUser":
+				$cont = new AdminControleur($action);
+				//$this->adminCreate();
+				break;
+							
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -55,7 +86,7 @@ class FrontControleur {
 		}catch (PDOException $e)
 		{
 			//si erreur BD, pas le cas ici
-			$dVueEreur[] =	"Erreur PDO inattendue!!! ";
+			$dVueEreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
 		}
 		catch (Exception $e2)
@@ -98,7 +129,7 @@ class FrontControleur {
 	}
 	
 	function ValidationFormulaireLogin(array $dVueEreur) {
-		global $rep,$vues, $cont;
+		global $rep,$vues;
 
 		//si exception, ca remonte !!!
 		$email=$_POST['email']; 
@@ -113,7 +144,6 @@ class FrontControleur {
 
 			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
 				if($dVueEreur['email']==="admin" || $dVueEreur['password']==='admin'){
-					$cont = new AdminControleur();
 					require($rep.$vues['admin']);
 				}
 				else{
@@ -121,12 +151,11 @@ class FrontControleur {
 				}
 			}
 			else{
-				$cont = new UserControleur();
 				require ($rep.$vues['main']);
 			}
 		}
 	}
-	
+			
 	function logAno(){
 		global $rep, $vues;
 		$email='Anonymous';
@@ -135,4 +164,5 @@ class FrontControleur {
 
 }//fin class
 
+	
 ?>

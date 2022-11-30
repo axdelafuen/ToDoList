@@ -2,7 +2,7 @@
 
 class AdminControleur {
 
-	function __construct() {
+	function __construct($action) {
 		global $rep,$vues,$cont; // nécessaire pour utiliser variables globales
 		//session_start();
 
@@ -10,10 +10,7 @@ class AdminControleur {
 		$dVueEreur = array ();
 
 		try{
-			if(isset($_REQUEST['action'])){
-				$action=$_REQUEST['action'];
-			}
-			else{
+			if(!isset($action)){
 				$action=NULL;
 			}
 
