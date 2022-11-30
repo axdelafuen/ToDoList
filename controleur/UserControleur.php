@@ -34,6 +34,10 @@ class UserControleur {
 				//require($rep.$vues['main']);
 				break;
 				
+			case "DispToDo":
+				$this->displayToDoSelected();
+				break;
+				
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -69,6 +73,13 @@ class UserControleur {
 		$password="";
 		require($rep.$vues['login']);	
     }
+	
+	function displayToDoSelected(){
+		$id=$_POST['id']; 
+		global $selectedToDo,$rep,$vues,$user;
+		$selectedToDo=$id;
+		require($rep.$vues['main']);
+	}
 	
 }//fin class
 

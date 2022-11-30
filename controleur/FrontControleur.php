@@ -75,6 +75,10 @@ class FrontControleur {
 				$cont = new AdminControleur($action);
 				//$this->adminCreate();
 				break;
+				
+			case "DispToDo":
+				$cont = new UserControleur($action);
+				break;
 							
 			//mauvaise action
 			default:
