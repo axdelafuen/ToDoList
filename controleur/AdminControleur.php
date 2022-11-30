@@ -26,6 +26,7 @@ class AdminControleur {
 
 			case "déconnexion":
 				$this->Deconnexion();
+				$cont = new FrontControleur();
 				break;
 		
 			case "back":

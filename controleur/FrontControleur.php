@@ -113,7 +113,7 @@ class FrontControleur {
 
 			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
 				if($dVueEreur['email']==="admin" || $dVueEreur['password']==='admin'){
-					$control = new AdminControleur();
+					$cont = new AdminControleur();
 					require($rep.$vues['admin']);
 				}
 				else{
@@ -121,7 +121,7 @@ class FrontControleur {
 				}
 			}
 			else{
-				$control = new UserControleur();
+				$cont = new UserControleur();
 				require ($rep.$vues['main']);
 			}
 		}
