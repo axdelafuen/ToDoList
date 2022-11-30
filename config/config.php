@@ -27,13 +27,14 @@ $vues['main']='vues/main.php';
 $vues['register']='vues/register.php';
 $vues['admin']='vues/adminPanel.php';
 
-// variables de test :
 
 require_once('modeles/ToDoList.php');
 require_once('modeles/Task.php');
 require_once('modeles/User.php');
-
 // global var
+$user;
+$selectedToDo=0;
+// variables de test :
 $usr1=new User(1,'Catherine@php.com','4321');
 $usr2=new User(1,'fred@fred.com','1234');
 $usrAr= array(0=>$usr1,1=>$usr2);
@@ -56,5 +57,6 @@ $todo2=new ToDoList(1,"ToDo2",$ar2,$usrAr,true);
 $todo = array();
 $todo[]=$todo1;
 $todo[]=$todo2;
+
 
 ?>

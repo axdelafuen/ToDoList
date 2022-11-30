@@ -16,7 +16,7 @@
         <h1 class="title">
             <span class="material-symbols-outlined">format_list_bulleted</span>ToDo List
         </h1>
-        <span>Logged as : <u><?= $email?></u></span>
+        <span>Logged as : <u><?=$user->getEmail()?></u></span>
     </div>
     <form method="post">
         <input class="disconnect-button" type="submit" value="Se déconnecter">
@@ -29,18 +29,17 @@
         <?php
             // global var
             global $todo;
+            global $selectedToDo;
             //script display all ToDo
-            echo('<form class="login-form" method="get">');
             echo ('<div class="todo-sidebar">');
-
             foreach ($todo as $value) {// all todo
+                echo('<form class="login-form" method="post">');
                 echo ('<input class="todo-title" type="submit" value='.$value->name.'> <input type="hidden" name="id" value='.$value->id.'> <input type="hidden" name="action" value="DispToDo">');
+                echo('</form>');
             }
             echo ('</div>');
-            echo('</form>');
-            $selectedToDo=$todo[0];
-            echo ('<div class="todo-content"><h2 contenteditable="true">'.$selectedToDo->name.'</h2>');
-            foreach($selectedToDo->tasks['tsk'] as $taskP){// alltasks in the todo selected
+            echo ('<div class="todo-content"><h2 contenteditable="true">'.$todo[$selectedToDo]->name.'</h2>');
+            foreach($todo[$selectedToDo]->tasks['tsk'] as $taskP){// alltasks in the todo selected
                 echo('<div class="line">');
                 echo('<input type="checkbox">');
                 echo('<p id="tess" contenteditable="true">'.$taskP->description.'</p>');
