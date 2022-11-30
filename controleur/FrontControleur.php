@@ -121,7 +121,7 @@ class FrontControleur {
 				}
 			}
 			else{
-				$control = new AdminControleur();
+				$control = new UserControleur();
 				require ($rep.$vues['main']);
 			}
 		}
