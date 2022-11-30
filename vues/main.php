@@ -1,10 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
     <title>Accueil | ToDo List</title>
-    <base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">
+    <!-- <base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/"> -->
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="icon" type="image/x-icon" href="ressources/images/favicon.png" >
@@ -17,7 +16,7 @@
         <h1 class="title">
             <span class="material-symbols-outlined">format_list_bulleted</span>ToDo List
         </h1>
-        <span>Logged as : <u><?= $email?></u></span>
+        <span>Logged as : <u><?=$user->getEmail()?></u></span>
     </div>
     <div class="form-account">
      <form method="post">
@@ -37,23 +36,27 @@
 
 <div class="todo-container">
     <div class="todo">
-        <div class="todo-sidebar">
-            <span>Content</span>
-        </div>
-        <div class="todo-content">
-            <h2 contenteditable="true">Content Title</h2>
-            <p contenteditable="true"> 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id leo tincidunt, eleifend quam id, interdum diam. Suspendisse in metus vitae libero ornare convallis. In sit amet diam eu diam semper sollicitudin. Ut placerat a neque hendrerit rhoncus. Ut nec malesuada libero. Etiam vel ultricies justo, quis posuere neque. Cras imperdiet nisi est, quis efficitur purus ullamcorper id. Duis sollicitudin luctus dictum. Sed ac laoreet nulla. Morbi nec luctus sem. Integer ipsum quam, tincidunt quis ligula vitae, accumsan accumsan ipsum. Praesent non felis a leo dignissim placerat id id nibh. Phasellus mollis pellentesque quam eu tristique. In fermentum consectetur sem, nec posuere ante. Proin efficitur fermentum ultricies. Sed ullamcorper nibh erat, ac efficitur ex vulputate quis.
-
-Cras non convallis risus, vitae porta mi. Suspendisse pharetra dignissim turpis quis aliquam. In mi erat, consequat ut sagittis eget, tincidunt quis nulla. Nam nec est eu turpis suscipit egestas. Mauris non semper purus. In sed est ullamcorper, laoreet nisi in, consectetur dolor. Praesent luctus id nibh quis dignissim. Nulla consectetur nisl nunc, tempus dictum augue imperdiet ut. Phasellus ligula erat, faucibus eu luctus sit amet, scelerisque sed arcu. Donec ante felis, eleifend ac neque eget, eleifend bibendum velit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas tincidunt, urna nec rutrum aliquam, arcu nisl scelerisque lacus, sit amet vestibulum neque massa ac elit. Cras vitae luctus purus, quis mollis ex. Nulla metus nisl, bibendum ac lacus ac, dapibus blandit mauris. Etiam in tempus risus.
-
-Maecenas eleifend, lectus in cursus vehicula, mi nunc laoreet arcu, in congue sapien arcu in neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean justo enim, gravida sed sapien at, pharetra aliquam erat. Praesent id pulvinar orci. Quisque dictum et nulla non aliquet. Mauris aliquam massa sit amet nibh volutpat volutpat. Maecenas vitae tincidunt ligula. Aliquam ut pellentesque metus, et posuere urna. Vestibulum imperdiet sagittis neque a dignissim. Suspendisse vel ipsum sapien. In bibendum justo sed tortor venenatis, et hendrerit urna egestas.
-
-Integer a ipsum egestas, rutrum ligula in, hendrerit erat. Nullam volutpat nibh ut augue bibendum tempus. Proin urna leo, aliquet gravida tempor ac, porta vitae erat. Aliquam ex risus, rhoncus vulputate dolor ut, aliquam feugiat nunc. Sed eu fringilla sapien, in tempor turpis. Morbi aliquet felis ut ligula dignissim tristique. Ut ut neque eu turpis mollis ullamcorper maximus vel urna.
-
-Pellentesque vel malesuada arcu. Phasellus convallis urna a risus aliquam rutrum. In nulla ante, pulvinar at cursus ut, dictum et metus. Duis a nisl sed purus imperdiet aliquet id a nulla. Duis sit amet arcu sed sem hendrerit sodales. Integer interdum vehicula felis in pharetra. Cras id pretium nisl, ut convallis dolor. Pellentesque tristique massa elit, sit amet consectetur justo dignissim vel. Nunc vitae est eu nisi imperdiet posuere id at ipsum. Donec nec orci dictum, vehicula turpis sed, elementum leo. Donec pellentesque tortor at justo tempor sollicitudin. Mauris sit amet felis at mi luctus venenatis sit amet quis lacus. Maecenas scelerisque tellus nec lectus elementum dapibus.  
-            </p>
-        </div>
+        <?php
+            // global var
+            global $todo;
+            global $selectedToDo;
+            //script display all ToDo
+            echo ('<div class="todo-sidebar">');
+            foreach ($todo as $value) {// all todo
+                echo('<form class="login-form" method="post">');
+                echo ('<input class="todo-title" type="submit" value='.$value->name.'> <input type="hidden" name="id" value='.$value->id.'> <input type="hidden" name="action" value="DispToDo">');
+                echo('</form>');
+            }
+            echo ('</div>');
+            echo ('<div class="todo-content"><h2 contenteditable="true">'.$todo[$selectedToDo]->name.'</h2>');
+            foreach($todo[$selectedToDo]->tasks['tsk'] as $taskP){// alltasks in the todo selected
+                echo('<div class="line">');
+                echo('<input type="checkbox">');
+                echo('<p id="tess" contenteditable="true">'.$taskP->description.'</p>');
+                echo('</div>');
+            }
+            echo ('</p></div>');
+        ?>
     </div>
     
 </div>
@@ -69,4 +72,4 @@ Pellentesque vel malesuada arcu. Phasellus convallis urna a risus aliquam rutrum
         <span class="todo-delete"><span class="material-symbols-outlined">delete</span></span>
     </div>
 </body>
-</html> 
+</html>

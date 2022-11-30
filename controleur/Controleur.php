@@ -22,7 +22,6 @@ class Controleur {
 
 			switch($action) {
 
-			//pas d'action, on r�initialise 1er appel
 			case NULL:
 				$this->Reinit();
 				break;
@@ -71,6 +70,9 @@ class Controleur {
 				$this->adminCreate();
 				break;
 							
+			case "DispToDo":
+				$this->displayToDoSelected();
+				break;				
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -104,6 +106,7 @@ class Controleur {
 		global $rep,$vues;
 
 		//si exception, ca remonte !!!
+		// faire en amont le isset pour verifier que le champ ne soit pas vide
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
 		$passwordConfirm=$_POST['passwordConfirm'];
@@ -124,8 +127,7 @@ class Controleur {
 	}
 	
 	function ValidationFormulaireLogin(array $dVueEreur) {
-		global $rep,$vues;
-
+		global $rep,$vues,$user;
 		//si exception, ca remonte !!!
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
@@ -146,6 +148,7 @@ class Controleur {
 				}
 			}
 			else{
+				$user=new User(2,$email,$password);
 				require ($rep.$vues['main']);
 			}
 		}
@@ -162,6 +165,7 @@ class Controleur {
           		$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
            		require($rep.$vues['erreur']);
 		}
+		$user = new User(0,"Admin","");
 		require($rep.$vues['admin']);
 	}
 	
@@ -193,12 +197,20 @@ class Controleur {
 		global $rep,$vues;
 		$email="";
 		$password="";
-		require($rep.$vues['login']);	
+		require($rep.$vues['login']);
+		$user = null;
 	}
 	
 	function logAno(){
-		global $rep, $vues;
+		global $rep, $vues, $user ;
 		$email='Anonymous';
+		$user = new User(1,"Anonymous","");
+		require($rep.$vues['main']);
+	}
+	function displayToDoSelected(){
+		$id=$_POST['id']; 
+		global $selectedToDo,$rep,$vues,$user;
+		$selectedToDo=$id;
 		require($rep.$vues['main']);
 	}
 
