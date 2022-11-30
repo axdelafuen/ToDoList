@@ -24,7 +24,6 @@ class UserControleur {
 
 			case "déconnexion":
 				$this->Deconnexion();
-				$cont = new FrontControleur();
 				break;
 			
 			case "editAccount":
