@@ -4,10 +4,6 @@ class AdminControleur {
 
 	function __construct() {
 		global $rep,$vues; // nécessaire pour utiliser variables globales
-		// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-		session_start();
-
-		//debut
 
 		//on initialise un tableau d'erreur
 		$dVueEreur = array ();
