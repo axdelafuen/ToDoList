@@ -164,8 +164,8 @@ class FrontControleur {
 	}
 			
 	function logAno(){
-		global $rep, $vues;
-		$email='Anonymous';
+		global $rep, $vues,$user;
+		$user = new User(0,'Anonymous','');
 		require($rep.$vues['main']);
 	}
 
