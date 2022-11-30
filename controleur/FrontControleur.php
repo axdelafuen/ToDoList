@@ -155,6 +155,7 @@ class FrontControleur {
 				}
 			}
 			else{
+				$user=new User(2,$email,$password);
 				require ($rep.$vues['main']);
 			}
 		}
