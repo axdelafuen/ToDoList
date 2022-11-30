@@ -133,7 +133,7 @@ class FrontControleur {
 	}
 	
 	function ValidationFormulaireLogin(array $dVueEreur) {
-		global $rep,$vues;
+		global $rep,$vues, $user;
 
 		//si exception, ca remonte !!!
 		$email=$_POST['email']; 
