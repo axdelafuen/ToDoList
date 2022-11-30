@@ -3,9 +3,9 @@
 class UserControleur {
 
 	function __construct() {
-		global $rep,$vues; // nécessaire pour utiliser variables globales
+		global $rep,$vues,$cont; // nécessaire pour utiliser variables globales
 		
-		session_start();
+		//session_start();
 		//debut
 
 		//on initialise un tableau d'erreur

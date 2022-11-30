@@ -3,8 +3,8 @@
 class AdminControleur {
 
 	function __construct() {
-		global $rep,$vues; // nécessaire pour utiliser variables globales
-		session_start();
+		global $rep,$vues,$cont; // nécessaire pour utiliser variables globales
+		//session_start();
 
 		//on initialise un tableau d'erreur
 		$dVueEreur = array ();
