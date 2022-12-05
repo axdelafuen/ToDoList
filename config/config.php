@@ -27,6 +27,17 @@ $vues['register']='vues/register.php';
 $vues['admin']='vues/adminPanel.php';
 $vues['editAccount']='vues/editAccount.php';
 
+// actions user :
+$actionUser['déconnection']='déconnection';
+$actionUser['editAccount']='editAccount';
+$actionUser['back']='back';
+$actionUser['DispToDo']='DispToDo';
+    
+// action admin :
+$actionAdmin['scriptTable']='scriptTable';
+$actionAdmin['dropTableUser']='dropTableUser';
+$actionAdmin['CreateTableUser']='CreateTableUser';
+
 // variables de test :
 
 require_once('metiers/ToDoList.php');

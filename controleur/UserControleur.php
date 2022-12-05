@@ -3,10 +3,8 @@
 class UserControleur {
 
 	function __construct($action) {
-		global $rep,$vues,$cont; // nécessaire pour utiliser variables globales
+		global $rep,$vues; // nécessaire pour utiliser variables globales
 		
-		//session_start();
-		//debut
 
 		//on initialise un tableau d'erreur
 		$dVueEreur = array ();
@@ -71,6 +69,7 @@ class UserControleur {
 		global $rep,$vues;
 		$email="";
 		$password="";
+		session_destroy();
 		require($rep.$vues['login']);	
     }
 	

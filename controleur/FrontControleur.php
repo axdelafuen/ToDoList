@@ -2,16 +2,16 @@
 
 class FrontControleur {
 	function __construct() {
-		global $rep,$vues; // nécessaire pour utiliser variables globales
+		global $rep,$vues, $actionAdmin, $actionUser; // nécessaire pour utiliser variables globales
 		// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
 		session_start();
 
 		//debut
 
-		//on initialise un tableau d'erreur
+		//on initialise les tableaux d'erreur et d'annonce
 		$dVueEreur = array ();
 		$dVueAnnonce = array ();
-
+		
 		try{
 			if(isset($_REQUEST['action'])){
 				$action=$_REQUEST['action'];
@@ -19,83 +19,53 @@ class FrontControleur {
 			else{
 				$action=NULL;
 			}
-
-			switch($action) {
-
-			//pas d'action, on r�initialise 1er appel
-			case NULL:
-				$this->Reinit();
-				break;
-
-			case "validationLogin":
-				$this->ValidationFormulaireLogin($dVueEreur);
-				break;
-			
-			case "validationRegister":
-				$this->ValidationFormulaireRegister($dVueEreur, $dVueAnnonce);
-				break;
-			case "goRegister":
-				require($rep.$vues['register']);
-				break;				
-			case "goLogin":
-				require($rep.$vues['login']);
-				break;
-								
-			case "déconnexion":
-				$cont = new UserControleur($action);
-				//$this->Deconnexion();
-				break;
-			
-			case "logAno":
-				$this->LogAno();
-				break;
-				
-			case "editAccount":
-				$cont = new UserControleur($action);
-				require($rep.$vues['editAccount']);
-				break;
-				
-			case "back":
-				$cont = new UserControleur($action);
-				//require($rep.$vues['main']);
-				break;
-				
-			// action admin 
-				
-			case "scriptTable":
-				$cont = new AdminControleur($action);
-				//$this->adminPanel();
-				break;
-				
-			case "dropTableUser":
-				$cont = new AdminControleur($action);
-				//$this->adminDrop();
-				break;
-				
-			case "CreateTableUser":
-				$cont = new AdminControleur($action);
-				//$this->adminCreate();
-				break;
-				
-			case "DispToDo":
-				$cont = new UserControleur($action);
-				break;
-							
-			//mauvaise action
-			default:
-				$dVueEreur[] =	"Erreur d'appel php";
-				require ($rep.$vues['login']);
-				break;
+			if(in_array($action,$actionAdmin)){
+				new AdminControleur($action);
 			}
+			else if(in_array($action, $actionUser)){
+				new UserControleur($action);
+			}
+			else{
 
-		}catch (PDOException $e)
-		{
+				switch($action) {
+
+					//pas d'action, on r�initialise 1er appel
+					case NULL:
+						$this->Reinit();
+						break;
+
+					case "validationLogin":
+						$this->ValidationFormulaireLogin($dVueEreur);
+						break;
+			
+					case "validationRegister":
+						$this->ValidationFormulaireRegister($dVueEreur, $dVueAnnonce);
+						break;
+					case "goRegister":
+						require($rep.$vues['register']);
+						break;				
+					case "goLogin":
+						require($rep.$vues['login']);
+						break;
+								
+					case "logAno":
+						$this->LogAno();
+						break;
+				
+					//mauvaise action
+					default:
+						$dVueEreur[] =	"Erreur d'appel php";
+						require ($rep.$vues['login']);
+						break;
+				}
+			}
+		}
+		catch (PDOException $e){
 			//si erreur BD, pas le cas ici
 			$dVueEreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
 		}
-		catch (Exception $e2)
-		{
+		catch (Exception $e2){
 			$dVueEreur[] =	"Erreur inattendue!!! ";
 			require ($rep.$vues['erreur']);
 		}
@@ -104,12 +74,12 @@ class FrontControleur {
 		exit(0);
 	}//fin constructeur
 
-
 	function Reinit() {
 		global $rep,$vues; // nécessaire pour utiliser variables globales
 		require ($rep.$vues['login']);
 	}
-
+	
+	// CLASS MODEL
 	function ValidationFormulaireRegister(array $dVueEreur, array $dVueAnnonce){
 		global $rep,$vues;
 
@@ -134,6 +104,7 @@ class FrontControleur {
 		}
 	}
 	
+	// CLASS MODEL
 	function ValidationFormulaireLogin(array $dVueEreur) {
 		global $rep,$vues, $user;
 
