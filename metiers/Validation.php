@@ -77,12 +77,6 @@ class Validation {
     static function val_user(string &$email, string &$password, array &$dVueEreur){
         global $dsn, $username, $passwordBD;
                 
-        if($email === "admin@admin.com" && $password === "123abc456etoui"){
-            $dVueEreur['email'] = "admin";
-            $email="";
-            $password="";
-            return;
-        }
         $conn = new Connection($dsn, $username, $passwordBD);
         $getUser = new UserGateway($conn);
 
@@ -112,11 +106,20 @@ class Validation {
         }
         try{
             $getUser->addUser($email,$password);
+            //$getUser->addAdmin($email,$password);
         }catch(Exception $e){
             $dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
             require($rep.$vues['erreur']);
         }
 
+    }
+    static function isAdmin(string $email){
+        global $dsn,$username, $passwordBD;
+        
+        $conn = new Connection($dsn, $username, $passwordBD);
+        $getUser = new UserGateway($conn);
+        return $getUser->getUserByEmail($email)['isAdmin'];
+        return false;
     }
 }
 ?>

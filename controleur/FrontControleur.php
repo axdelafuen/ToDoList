@@ -120,24 +120,18 @@ class FrontControleur {
 			Validation::val_user($email,$password,$dVueEreur);//verif existence user
 
 			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
-				// if($dVueEreur['email']==="admin" || $dVueEreur['password']==='admin'){
-				// 	require($rep.$vues['admin']);
-				// }
-				// else{
-				// 	require($rep.$vues['login']);
-				// }
 				require($rep.$vues['login']);
 			}
 			else{
-				if ($email == 'admin') { //verif user est un admin
+				if(Validation::isAdmin($email)){ //verif user est un admin
 					$_SESSION['role'] = 'admin';
 					$_SESSION['login']=$email;
+					require($rep.$vues['admin']);
 				}
 				else{
 					$_SESSION['role'] = 'user';
 					$_SESSION['login']=$email;
 					$_SESSION['selectedToDo']=0;
-					$user=new User(2,$email,$password);
 					require ($rep.$vues['main']);
 				}
 			}
