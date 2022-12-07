@@ -111,32 +111,42 @@ class FrontControleur {
 		//si exception, ca remonte !!!
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
-		Validation::val_formLog($email, $password, $dVueEreur);
+		Validation::val_formLog($email, $password, $dVueEreur);//nettoyage var
 		
 		if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
-			require($rep.$vues['login']);
+			require($rep.$vues['login']);// si tab err non nul affichage err
 		}
 		else{
-			Validation::val_user($email,$password,$dVueEreur);
+			Validation::val_user($email,$password,$dVueEreur);//verif existence user
 
 			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
-				if($dVueEreur['email']==="admin" || $dVueEreur['password']==='admin'){
-					require($rep.$vues['admin']);
-				}
-				else{
-					require($rep.$vues['login']);
-				}
+				// if($dVueEreur['email']==="admin" || $dVueEreur['password']==='admin'){
+				// 	require($rep.$vues['admin']);
+				// }
+				// else{
+				// 	require($rep.$vues['login']);
+				// }
+				require($rep.$vues['login']);
 			}
 			else{
-				$user=new User(2,$email,$password);
-				require ($rep.$vues['main']);
+				if ($email == 'admin') { //verif user est un admin
+					$_SESSION['role'] = 'admin';
+					$_SESSION['login']=$email;
+				}
+				else{
+					$_SESSION['role'] = 'user';
+					$_SESSION['login']=$email;
+					$user=new User(2,$email,$password);
+					require ($rep.$vues['main']);
+				}
 			}
 		}
 	}
 			
 	function logAno(){
 		global $rep, $vues,$user;
-		$user = new User(0,'Anonymous','');
+		$_SESSION['role'] = 'ano';
+		$_SESSION['login']="Anonymous";
 		require($rep.$vues['main']);
 	}
 

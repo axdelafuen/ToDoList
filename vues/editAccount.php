@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Accueil | ToDo List</title>
-    <base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">
+    <!--<base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">-->
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="styles/editAccount.css">
@@ -32,7 +32,7 @@
 </div>
 
 <div>
-    <h3>Edit your account <?= $email ?> </h3>
+    <h3>Edit your account <?= $_SESSION['login'] ?> </h3>
     <div class="edit-menu">
         <form method="post">
             <div class="edit-form">

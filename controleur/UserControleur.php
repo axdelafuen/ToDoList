@@ -29,7 +29,7 @@ class UserControleur {
 				break;
 				
 			case "back":
-				//require($rep.$vues['main']);
+				require($rep.$vues['main']);
 				break;
 				
 			case "DispToDo":
@@ -69,6 +69,7 @@ class UserControleur {
 		global $rep,$vues;
 		$email="";
 		$password="";
+		session_unset();
 		session_destroy();
 		require($rep.$vues['login']);	
     }

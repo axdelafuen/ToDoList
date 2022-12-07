@@ -16,7 +16,7 @@
         <h1 class="title">
             <span class="material-symbols-outlined">format_list_bulleted</span>ToDo List
         </h1>
-        <span>Logged as : <u><?=$user->getEmail()?></u></span>
+        <span>Logged as : <u><?=$_SESSION['login']?></u></span>
     </div>
     <div class="form-account">
      <form method="post">
@@ -24,7 +24,7 @@
         <input type="hidden" name="action" value="déconnexion">
     </form>
     <?php
-        if($user->getEmail()!='Anonymous'){
+        if($_SESSION['login']!="Anonymous"){
             echo '<form method="post">
                 <input class="disconnect-button" type="submit" value="Edit your account">
                 <input type="hidden" name="action" value="editAccount">
