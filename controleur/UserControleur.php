@@ -35,7 +35,18 @@ class UserControleur {
 			case "DispToDo":
 				$this->displayToDoSelected();
 				break;
-				
+			case "changeDone":
+				$this->ChangeExecutedTask();
+				break;	
+			case "addNewTodo":
+				$this->NewTodo();
+				break;
+			case "saveTodo":
+				$this->saveToDo();
+				break;				
+			case "deleteTodo":
+				$this->deleteToDo();
+				break;
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -76,11 +87,32 @@ class UserControleur {
 	
 	function displayToDoSelected(){
 		$id=$_POST['id']; 
-		global $selectedToDo,$rep,$vues,$user;
-		$selectedToDo=$id;
+		global $rep,$vues,$user;
+		$_SESSION['selectedToDo'] = $id;
 		require($rep.$vues['main']);
 	}
-	
+	function ChangeExecutedTask(){
+		$id=$_POST['idTask']; 
+		global $rep,$vues,$user,$test;
+		$test = $id;
+		require($rep.$vues['main']);
+	}
+	function NewTodo(){
+		global $rep,$vues,$user;
+		// appel gw -> create empty todo
+		require($rep.$vues['main']);
+	}
+	function saveToDo(){
+		$id=$_POST['idToDo']; 
+		global $rep,$vues,$user;
+		// appel gw -> save
+		require($rep.$vues['main']);
+	}
+	function deleteToDo(){
+		$id=$_POST['idToDo']; 
+		global $rep,$vues,$user;
+		// appel gw -> delete
+		require($rep.$vues['main']);
+	}
 }//fin class
-
 ?>

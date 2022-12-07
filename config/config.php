@@ -33,7 +33,11 @@ $actionUser['déconnexion']='déconnexion';
 $actionUser['editAccount']='editAccount';
 $actionUser['back']='back';
 $actionUser['DispToDo']='DispToDo';
-    
+$actionUser['changeDone']='changeDone';
+$actionUser['addNewTodo']='addNewTodo';
+$actionUser['saveTodo']='saveTodo';
+$actionUser['deleteTodo']='deleteTodo';
+
 // action admin :
 $actionAdmin['scriptTable']='scriptTable';
 $actionAdmin['dropTableUser']='dropTableUser';
@@ -61,7 +65,7 @@ $ar1[]=$tsk2;
 $ar1[]=$tsk5;
 
 $tsk3=new Task( 3,1,false,'Boire');
-$tsk4 = new Task(4,2,false,'Dormir');
+$tsk4 = new Task(4,2,true,'Dormir');
 $ar2 = array($tsk3,$tsk4);
 
 $todo1=new ToDoList(0,"ToDo1",$ar1,$usrAr,true);

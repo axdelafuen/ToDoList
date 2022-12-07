@@ -136,6 +136,7 @@ class FrontControleur {
 				else{
 					$_SESSION['role'] = 'user';
 					$_SESSION['login']=$email;
+					$_SESSION['selectedToDo']=0;
 					$user=new User(2,$email,$password);
 					require ($rep.$vues['main']);
 				}

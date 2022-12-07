@@ -64,7 +64,8 @@ class Controleur {
 							
 			case "DispToDo":
 				$this->displayToDoSelected();
-				break;				
+				break;
+
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -194,6 +195,7 @@ class Controleur {
 		$selectedToDo=$id;
 		require($rep.$vues['main']);
 	}
+
 	
 
 }//fin class

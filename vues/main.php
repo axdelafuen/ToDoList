@@ -39,7 +39,11 @@
         <?php
             // global var
             global $todo;
-            global $selectedToDo;
+            $selectedToDo=$_SESSION['selectedToDo'];
+            // if ($selectedToDo==0&&$todo[0]==null) { //si pas de todo ne doit rien affichbier -> gestion err
+            
+            // }
+            global $test;
             //script display all ToDo
             echo ('<div class="todo-sidebar">');
             foreach ($todo as $value) {// all todo
@@ -50,26 +54,37 @@
             echo ('</div>');
             echo ('<div class="todo-content"><h2 contenteditable="true">'.$todo[$selectedToDo]->name.'</h2>');
             foreach($todo[$selectedToDo]->tasks['tsk'] as $taskP){// alltasks in the todo selected
+                echo('<form class="login-form" method="post">');
                 echo('<div class="line">');
-                echo('<input type="checkbox">');
+                echo('<input type="checkbox"');
+                if($taskP->done){
+                    echo('checked');
+                }
+                echo('><input type="hidden" name="idTask" value='.$taskP->id.'> <input type="hidden" name="action" value="changeDone">');
+                echo('</form>');
                 echo('<p id="tess" contenteditable="true">'.$taskP->description.'</p>');
                 echo('</div>');
             }
+            echo('<p>'.$test.'</p>');
             echo ('</p></div>');
+            echo('<form method="post">
+            <input class="todo-new" type="submit" value="+">
+            <input type="hidden" name="action" value="addNewTodo"> 
+        </form>
+        <form method="post">
+            <input class="todo-save" type="submit" value="save">
+            <input type="hidden" name="idToDo" value='.$selectedToDo.'>
+            <input type="hidden" name="action" value="saveTodo"> 
+        </form>
+        <form method="post">
+            <input class="todo-delete" type="submit" value="delete">
+            <input type="hidden" name="idToDo" value='.$selectedToDo.'>
+            <input type="hidden" name="action" value="deleteTodo"> ')
         ?>
     </div>
     
 </div>
-    <div class="todo-container-footer">
-        <span class="todo-new">+</span>
-    </div>
 
-    <div class="todo-container-footer">
-        <span class="todo-save"><span class="material-symbols-outlined">task_alt</span></span>
-    </div>
-
-    <div class="todo-container-footer">
-        <span class="todo-delete"><span class="material-symbols-outlined">delete</span></span>
-    </div>
+</form>
 </body>
 </html>

@@ -51,7 +51,6 @@
       </form>
       <form method="post">
         <input class="changePage" type="submit" value="Don't have already an account ?">
-
         <input type="hidden" name="action" value="goRegister">      
       </form> 
     </div>
