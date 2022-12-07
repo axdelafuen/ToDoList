@@ -53,36 +53,38 @@
             }
             echo ('</div>');
             echo ('<div class="todo-content"><h2 contenteditable="true">'.$todo[$selectedToDo]->name.'</h2>');
-            foreach($todo[$selectedToDo]->tasks['tsk'] as $taskP){// alltasks in the todo selected
+            $cpt=0;
+            foreach($todo[$selectedToDo]->tasks as $taskP){// alltasks in the todo selected
                 echo('<form class="login-form" method="post">');
                 echo('<div class="line">');
-                echo('<input type="checkbox"');
+                echo('<input type="checkbox" name="isDone'.$cpt.'" value="true" ');
+                $cpt++;
                 if($taskP->done){
                     echo('checked');
                 }
-                echo('><input type="hidden" name="idTask" value='.$taskP->id.'> <input type="hidden" name="action" value="changeDone">');
-                echo('</form>');
+                echo('>');
                 echo('<p id="tess" contenteditable="true">'.$taskP->description.'</p>');
                 echo('</div>');
             }
-            echo('<p>'.$test.'</p>');
             echo ('</p></div>');
-            echo('<form method="post">
+        ?>
+
+            <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
+            <input class="todo-save material-symbols-outlined" type="submit" value="task_alt">
+            <input type="hidden" name="action" value="saveTodo"> 
+        </form>
+        <form>
+            <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
             <input class="todo-new" type="submit" value="+">
             <input type="hidden" name="action" value="addNewTodo"> 
         </form>
-        <form method="post">
-            <input class="todo-save" type="submit" value="save">
-            <input type="hidden" name="idToDo" value='.$selectedToDo.'>
-            <input type="hidden" name="action" value="saveTodo"> 
+        <form>
+            <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
+            <input class="todo-delete material-symbols-outlined" type="submit" value="delete">
+            <input type="hidden" name="action" value="deleteTodo"> 
         </form>
-        <form method="post">
-            <input class="todo-delete" type="submit" value="delete">
-            <input type="hidden" name="idToDo" value='.$selectedToDo.'>
-            <input type="hidden" name="action" value="deleteTodo"> ')
-        ?>
     </div>
-    
+   
 </div>
 
 </form>

@@ -35,9 +35,6 @@ class UserControleur {
 			case "DispToDo":
 				$this->displayToDoSelected();
 				break;
-			case "changeDone":
-				$this->ChangeExecutedTask();
-				break;	
 			case "addNewTodo":
 				$this->NewTodo();
 				break;
@@ -91,12 +88,6 @@ class UserControleur {
 		$_SESSION['selectedToDo'] = $id;
 		require($rep.$vues['main']);
 	}
-	function ChangeExecutedTask(){
-		$id=$_POST['idTask']; 
-		global $rep,$vues,$user,$test;
-		$test = $id;
-		require($rep.$vues['main']);
-	}
 	function NewTodo(){
 		global $rep,$vues,$user;
 		// appel gw -> create empty todo
@@ -104,13 +95,22 @@ class UserControleur {
 	}
 	function saveToDo(){
 		$id=$_POST['idToDo']; 
-		global $rep,$vues,$user;
+		global $rep,$vues,$user,$todo;
+	
+		foreach(range(0, sizeof($todo[$id]->tasks)-1) as $val){ // récuperer les valeurs des checkbox
+			if(isset($_POST['isDone'.$val])){
+				$todo[$id]->tasks[$val]->done=true;
+			}
+			else{
+				$todo[$id]->tasks[$val]->done=false;
+			}
+		}
+			
 		// appel gw -> save
 		require($rep.$vues['main']);
 	}
 	function deleteToDo(){
-		$id=$_POST['idToDo']; 
-		global $rep,$vues,$user;
+		global $rep,$vues;
 		// appel gw -> delete
 		require($rep.$vues['main']);
 	}

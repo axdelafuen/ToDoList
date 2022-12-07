@@ -9,7 +9,7 @@ class ToDoList{
 	function __construct($id,$name,$tasks,$users, $visibility){
 		$this->id = $id;
 		$this->name = $name;
-		$this->tasks['tsk'] = $tasks;
+		$this->tasks = $tasks;
 		$this->users['usr']=$users;
 		$this->visibility=$visibility;
 	}
