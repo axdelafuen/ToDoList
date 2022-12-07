@@ -142,6 +142,7 @@ class FrontControleur {
 		global $rep, $vues,$user;
 		$_SESSION['role'] = 'ano';
 		$_SESSION['login']="Anonymous";
+		$_SESSION['selectedToDo']=0;		
 		require($rep.$vues['main']);
 	}
 
