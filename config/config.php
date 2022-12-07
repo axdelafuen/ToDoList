@@ -48,8 +48,8 @@ require_once('metiers/User.php');
 $user;
 $selectedToDo=0;
 // variables de test :
-$usr1=new User(1,'Catherine@php.com','4321');
-$usr2=new User(1,'fred@fred.com','1234');
+$usr1=new User(1,'Catherine@php.com','4321', false);
+$usr2=new User(1,'fred@fred.com','1234', false);
 $usrAr= array(0=>$usr1,1=>$usr2);
 
 $tsk1=new Task( 1,1,false,'Faire cuire des pates');
