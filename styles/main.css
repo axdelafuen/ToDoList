@@ -81,11 +81,11 @@ body{
   background: orange; 
   right: 6rem;
   margin-top:-5rem;
-  transition:1s;
+  transition:.4s;
 }
 .todo-new:hover{
   cursor:pointer;
-  border-radius:100px;
+  border-radius:35px;
 }
 .todo-delete{
   position:absolute;
@@ -101,11 +101,11 @@ body{
   background: #FE676E; 
   right: 11rem;
   margin-top:-5rem;
-  transition:1s;
+  transition:.4s;
 }
 .todo-delete:hover{
   cursor:pointer;
-  border-radius:100px;
+  border-radius:35px;
 }
 .todo-save{
   position:absolute;
@@ -121,7 +121,7 @@ body{
   background: #F79852; 
   right: 16rem;
   margin-top:-5rem;
-  transition:1s;
+  transition:.4s;
 }
 #tess{
   font-size: larger;
@@ -132,7 +132,7 @@ body{
 }
 .todo-save:hover{
   cursor:pointer;
-  border-radius:100px;
+  border-radius:35px;
 }
 /* ----------- */
 /* Customize the label (the container) */
