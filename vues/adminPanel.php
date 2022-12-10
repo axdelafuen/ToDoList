@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Accueil | ToDo List</title>
-    <base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">
+    <!--<base href="https://codefirst.iut.uca.fr/containers/todo_list-axelde_la_fuente/">-->
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="icon" type="image/x-icon" href="ressources/images/favicon.png" >

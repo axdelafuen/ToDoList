@@ -20,14 +20,14 @@
         </h1>
     </div>
     <div class="form-account">
-     <form method="post">
-        <input class="disconnect-button" type="submit" value="Disconnect">
-        <input type="hidden" name="action" value="déconnexion">
-    </form>
-    <form method="post">
-        <input class="disconnect-button" type="submit" value="< Back">
-        <input type="hidden" name="action" value="back">
-    </form>
+         <form method="post">
+            <input class="disconnect-button" type="submit" value="< Back">
+            <input type="hidden" name="action" value="back">
+         </form>
+         <form method="post">
+            <input class="disconnect-button" type="submit" value="Disconnect">
+            <input type="hidden" name="action" value="déconnexion">
+        </form>
     </div>
 </div>
 

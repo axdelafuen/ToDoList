@@ -19,18 +19,18 @@
         <span>Logged as : <u><?=$_SESSION['login']?></u></span>
     </div>
     <div class="form-account">
-     <form method="post">
-        <input class="disconnect-button" type="submit" value="Disconnect">
-        <input type="hidden" name="action" value="déconnexion">
-    </form>
-    <?php
+        <?php
         if($_SESSION['login']!="Anonymous"){
             echo '<form method="post">
                 <input class="disconnect-button" type="submit" value="Edit your account">
                 <input type="hidden" name="action" value="editAccount">
             </form>';
         }
-    ?>
+        ?>
+        <form method="post">
+            <input class="disconnect-button" type="submit" value="Disconnect">
+            <input type="hidden" name="action" value="déconnexion">
+        </form>
     </div>
    </div>
 
