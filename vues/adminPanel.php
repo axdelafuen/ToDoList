@@ -28,7 +28,7 @@
     <h3>Pannel administrateur</h3>
 
     <form method="post">
-        <input class="changePage" type="submit" value="Lancer le script de base de données">
+        <input class="changePage" type="submit" value="Lancer le script de base de données USER">
 
         <input type="hidden" name="action" value="scriptTable">      
       </form>
@@ -38,6 +38,21 @@
         if (isset($res)) {
           foreach ($res as $value){
             echo $value['id']." : ".$value['email']."<br>";
+          }}
+      ?>
+
+    
+    <form method="post">
+        <input class="changePage" type="submit" value="Lancer le script de base de données TODO">
+
+        <input type="hidden" name="action" value="scriptTableToDo">      
+      </form>
+
+      <?php
+        global $dsn, $username, $passwordBD;
+        if (isset($resToDo)) {
+          foreach ($resToDo as $value){
+                echo $value['id']." : ".$value['name']."<br>";
           }}
       ?>
 

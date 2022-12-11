@@ -12,6 +12,7 @@ class UserGateway
 
 	public function getUserByEmail($email){
 		$user=array();
+		$user['id']=' ';
 		$user['email'] = ' ';
 		$user['password'] = ' ';
 		$user['isAdmin'] = ' ';
@@ -25,6 +26,7 @@ class UserGateway
 			return $user;
 		}
 		foreach($res as $data){
+			$user['id']=$data['id'];
 			$user['email']=$data['email'];
 			$user['password']=$data['password'];
 			$user['isAdmin']=$data['isadmin'];

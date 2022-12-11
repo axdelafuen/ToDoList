@@ -37,9 +37,12 @@ $actionUser['changeDone']='changeDone';
 $actionUser['addNewTodo']='addNewTodo';
 $actionUser['saveTodo']='saveTodo';
 $actionUser['deleteTodo']='deleteTodo';
+$actionUser['addTask']='addTask';
+$actionUser['deleteTask']='deleteTask';
 
 // action admin :
 $actionAdmin['scriptTable']='scriptTable';
+$actionAdmin['scriptTableToDo']='scriptTableToDo';
 $actionAdmin['dropTableUser']='dropTableUser';
 $actionAdmin['CreateTableUser']='CreateTableUser';
 

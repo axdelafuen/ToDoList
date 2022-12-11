@@ -37,37 +37,45 @@
 <div class="todo-container">
     <div class="todo">
         <?php
-            // global var
-            global $todo;
+            global $dsn,$username,$passwordBD;
+
+            $userMdl = new UserMdl();
+            $todoMdl = new ToDoMdl();
+            $todo = $todoMdl->getAllToDo($userMdl->getUserByEmail($_SESSION['login'])['id']);
+
             $selectedToDo=$_SESSION['selectedToDo'];
-            // if ($selectedToDo==0&&$todo[0]==null) { //si pas de todo ne doit rien affichbier -> gestion err
-            
-            // }
-            global $test;
             //script display all ToDo
+            if($_SESSION['selectedToDo']!=-1){
             echo ('<div class="todo-sidebar">');
             foreach ($todo as $value) {// all todo
-                echo('<form class="login-form" method="post">');
-                echo ('<input class="todo-title" type="submit" value='.$value->name.'> <input type="hidden" name="id" value='.$value->id.'> <input type="hidden" name="action" value="DispToDo">');
+                echo('<form method="post">');
+                echo ('<input class="todo-title" type="submit" value="'.$value->name.'"> <input type="hidden" name="id" value='.$value->id.'> <input type="hidden" name="action" value="DispToDo">');
                 echo('</form>');
             }
             echo ('</div>');
-            echo ('<div class="todo-content"><h2 contenteditable="true">'.$todo[$selectedToDo]->name.'</h2>');
-            $cpt=0;
+            echo('<form method="post">');
+            
+            echo ('<div class="todo-content"><input class="todo-titleh2" type="text" name="title'.$todo[$selectedToDo]->id.'" value="'.$todo[$selectedToDo]->name.'" contenteditable="true"/>');
+
             foreach($todo[$selectedToDo]->tasks as $taskP){// alltasks in the todo selected
-                echo('<form class="login-form" method="post">');
                 echo('<div class="line">');
-                echo('<input type="checkbox" name="isDone'.$cpt.'" value="true" ');
-                $cpt++;
+                echo('<input type="checkbox" name="isDone'.$taskP->id.'" value="true" ');
                 if($taskP->done){
                     echo('checked');
                 }
                 echo('>');
-                echo('<p id="tess" contenteditable="true">'.$taskP->description.'</p>');
+                if($taskP->done){
+                    echo('<input class="task-content done-task" name="desc'.$taskP->id.'" id="tess" value="'.$taskP->description.'"/>');
+                }
+                else{
+                    echo('<input class="task-content" name="desc'.$taskP->id.'" id="tess" value="'.$taskP->description.'"/>');
+                }
                 echo('</div>');
             }
             echo ('</p></div>');
-        ?>
+            }
+            ?>
+
 
             <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
             <input class="todo-save material-symbols-outlined" type="submit" value="task_alt">
@@ -83,10 +91,19 @@
             <input class="todo-delete material-symbols-outlined" type="submit" value="delete">
             <input type="hidden" name="action" value="deleteTodo"> 
         </form>
+ 
     </div>
-   
-</div>
-
-</form>
+ </div>
+<?php
+if(isset($todo)){
+    echo "
+            <form>
+                <input type='hidden' name='idToDo' value=$selectedToDo>
+                <input class='task-add' type='submit' value='+'>
+                <input type='hidden' name='action' value='addTask'> 
+            </form> 
+        ";
+}
+?>
 </body>
 </html>

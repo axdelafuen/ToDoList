@@ -44,6 +44,9 @@ class UserControleur {
 			case "deleteTodo":
 				$this->deleteToDo();
 				break;
+			case "addTask":
+				$this->addTask();
+				break;
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -72,8 +75,7 @@ class UserControleur {
 		global $rep,$vues; // nécessaire pour utiliser variables globales
 		require ($rep.$vues['login']);
 	}
-	
-	function Deconnexion(){
+		function Deconnexion(){
 		global $rep,$vues;
 		$email="";
 		$password="";
@@ -89,29 +91,56 @@ class UserControleur {
 		require($rep.$vues['main']);
 	}
 	function NewTodo(){
-		global $rep,$vues,$user;
-		// appel gw -> create empty todo
+		global $rep,$vues;
+		$userMdl = new UserMdl();
+		$user = $userMdl->getUserByEmail($_SESSION['login']);
+		$todoMdl = new ToDoMdl();
+		$todoMdl->addToDo(new ToDoList(0,'{New ToDoList}', array(),$user,false));
+		$_SESSION['selectedToDo'] = $todoMdl->getLastToDo($user['id']);
 		require($rep.$vues['main']);
 	}
 	function saveToDo(){
-		$id=$_POST['idToDo']; 
-		global $rep,$vues,$user,$todo;
-	
-		foreach(range(0, sizeof($todo[$id]->tasks)-1) as $val){ // récuperer les valeurs des checkbox
-			if(isset($_POST['isDone'.$val])){
-				$todo[$id]->tasks[$val]->done=true;
+		global $rep,$vues;
+		$taskMdl = new TaskMdl();
+		$todoMdl = new ToDoMdl();
+		$todo = $todoMdl->getAllToDoEmail($_SESSION['login']);
+		foreach($todo[$_SESSION['selectedToDo']]->tasks as $val){ // récuperer les valeurs des checkbox
+			if(isset($_POST['isDone'.$val->id])){
+				$taskMdl->updateDoneTask($val->id,true);
 			}
 			else{
-				$todo[$id]->tasks[$val]->done=false;
+				$taskMdl->updateDoneTask($val->id,false);
 			}
 		}
-			
-		// appel gw -> save
+		$todoMdl->updateTitle($_SESSION['selectedToDo'],$_POST['title'.$_SESSION['selectedToDo']]);
+		foreach($todo[$_SESSION['selectedToDo']]->tasks as $val){ // récuperer les valeurs des checkbox
+			$taskMdl->updateContentTask($val->id,$_POST['desc'.$val->id]);
+		}
+		
 		require($rep.$vues['main']);
 	}
 	function deleteToDo(){
 		global $rep,$vues;
-		// appel gw -> delete
+		if($_SESSION['selectedToDo']==-1){
+			require($rep.$vues['main']);
+			return;
+		}
+		$todoMdl = new ToDoMdl();
+		$todoMdl->deleteToDo($_SESSION['selectedToDo']);
+		$userMdl = new UserMdl();
+		$_SESSION['selectedToDo']=$todoMdl->getFirstToDo($userMdl->getUserByEmail($_SESSION['login'])['id']);
+		require($rep.$vues['main']);
+	}
+
+
+	function addTask(){
+		global $rep,$vues;
+		if($_SESSION['selectedToDo']==-1){
+			require($rep.$vues['main']);
+			return;
+		}
+		$taskMdl = new TaskMdl();
+		$taskMdl->addTask($_SESSION['selectedToDo']);
 		require($rep.$vues['main']);
 	}
 }//fin class

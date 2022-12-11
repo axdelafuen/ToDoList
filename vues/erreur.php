@@ -19,6 +19,12 @@ if (isset($dVueEreur))
     
     
     // echo phpinfo();
-    
 }
+if(isset($e)){
+    echo $e;
+}
+if(isset($e2)){
+    echo $e2;
+}
+
 ?>

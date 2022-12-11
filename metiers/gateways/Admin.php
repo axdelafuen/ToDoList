@@ -47,7 +47,20 @@ class Admin{
         }
         */
     }
+
     
+    static public function getAllToDo(&$res){
+        global $dsn,$username,$passwordBD;
+        $conn = new Connection($dsn,$username, $passwordBD);
+        $requete2 = "SELECT * FROM ToDo;";
+        $conn->executeQuery($requete2);
+        $res = $conn->getResults();
+        /*
+        foreach($res as $val){
+            echo $val['id']." : ".$val['email']."<br>";
+        }
+        */
+    }    
     static public function dropUserTable(){
         global $dsn, $username, $passwordBD;
         $conn = new Connection($dsn,$username,$passwordBD);

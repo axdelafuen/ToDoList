@@ -35,6 +35,10 @@ class AdminControleur {
 				$this->adminPanel();
 				break;
 				
+			case "scriptTableToDo":
+				$this->adminPanelToDo();
+				break;
+
 			case "dropTableUser":
 				$this->adminDrop();
 				break;
@@ -77,6 +81,19 @@ class AdminControleur {
 		try{
 			$res = array();
 			Admin::getAllUsers($res);
+        }catch(Exception $e){
+          		$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
+           		require($rep.$vues['erreur']);
+		}
+		require($rep.$vues['admin']);
+	}
+
+	
+	function adminPanelToDo(){
+		global $rep, $vues;
+		try{
+			$resToDo = array();
+			Admin::getAllToDo($resToDo);
         }catch(Exception $e){
           		$dVueEreur[] = "ERREUR:<br/>".$e->getMessage();
            		require($rep.$vues['erreur']);

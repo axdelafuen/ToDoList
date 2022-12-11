@@ -106,7 +106,7 @@ class FrontControleur {
 	
 	// CLASS MODEL
 	function ValidationFormulaireLogin(array $dVueEreur) {
-		global $rep,$vues, $user;
+		global $rep,$vues, $dsn, $username, $passwordBD;
 
 		//si exception, ca remonte !!!
 		$email=$_POST['email']; 
@@ -131,7 +131,10 @@ class FrontControleur {
 				else{
 					$_SESSION['role'] = 'user';
 					$_SESSION['login']=$email;
-					$_SESSION['selectedToDo']=0;
+					$userMdl = new UserMdl();
+					$userid = $userMdl->getUserByEmail($email)['id'];
+					$todoMdl = new ToDoMdl();
+					$_SESSION['selectedToDo']=$todoMdl->getFirstToDo($userid);
 					require ($rep.$vues['main']);
 				}
 			}
