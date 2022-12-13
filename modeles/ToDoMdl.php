@@ -11,12 +11,19 @@ class ToDoMdl{
         $this->ToDoGw = new ToDoGateway($this->conn);
     }
 
+    function getEveryToDo(){
+        return $this->ToDoGw->getEveryToDo();    
+    }
+
     function getAllToDo($userid){
         return $this->ToDoGw->getAllToDoFromUser($userid);    
     }
 
     function getAllToDoEmail($email){
         return $this->ToDoGw->getAllToDoEmailUser($email);    
+    }
+    function getOtherToDoPublic($email){
+        return $this->ToDoGw->getOtherToDoPublic($email);    
     }
 
     function getFirstToDo($userid){
@@ -50,6 +57,10 @@ class ToDoMdl{
 
     function updateTitle($id,$title){
         $this->ToDoGw->updateTitle($id,$title);
+    }
+
+    function changePrivacy($id,$visibility){
+        $this->ToDoGw->changePrivacy($id,$visibility);
     }
 }
 

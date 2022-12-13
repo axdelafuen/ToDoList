@@ -47,6 +47,18 @@ class UserControleur {
 			case "addTask":
 				$this->addTask();
 				break;
+			case "deleteTask":
+				$this->deleteTask();
+				break;
+			case "saveContentTask":
+				$this->saveContentTask();
+				break;
+			case "taskChangeState":
+				$this->taskChangeState();
+				break;
+			case "changePrivacy":
+				$this->changePrivacy();
+				break;
 			//mauvaise action
 			default:
 				$dVueEreur[] =	"Erreur d'appel php";
@@ -104,21 +116,26 @@ class UserControleur {
 		$taskMdl = new TaskMdl();
 		$todoMdl = new ToDoMdl();
 		$todo = $todoMdl->getAllToDoEmail($_SESSION['login']);
-		foreach($todo[$_SESSION['selectedToDo']]->tasks as $val){ // récuperer les valeurs des checkbox
-			if(isset($_POST['isDone'.$val->id])){
-				$taskMdl->updateDoneTask($val->id,true);
-			}
-			else{
-				$taskMdl->updateDoneTask($val->id,false);
-			}
-		}
+
 		$todoMdl->updateTitle($_SESSION['selectedToDo'],$_POST['title'.$_SESSION['selectedToDo']]);
-		foreach($todo[$_SESSION['selectedToDo']]->tasks as $val){ // récuperer les valeurs des checkbox
-			$taskMdl->updateContentTask($val->id,$_POST['desc'.$val->id]);
-		}
-		
+
 		require($rep.$vues['main']);
 	}
+
+	function taskChangeState(){
+		global $rep, $vues;
+		$taskMdl = new TaskMdl();
+		if(isset($_POST['idTask'])){
+			if(isset($_POST['isDone'])){
+				$taskMdl->updateDoneTask($_POST['idTask'],true);
+			}
+			else{
+				$taskMdl->updateDoneTask($_POST['idTask'],false);
+			}
+		}
+		require($rep.$vues['main']);
+	}
+
 	function deleteToDo(){
 		global $rep,$vues;
 		if($_SESSION['selectedToDo']==-1){
@@ -143,5 +160,38 @@ class UserControleur {
 		$taskMdl->addTask($_SESSION['selectedToDo']);
 		require($rep.$vues['main']);
 	}
+
+	function deleteTask(){
+		global $rep, $vues;
+		$taskMdl = new TaskMdl();
+		if(isset($_POST['idTask'])){
+			$taskMdl->deleteTaskById($_POST['idTask']);
+		}
+		require($rep.$vues['main']);
+	}
+
+	function saveContentTask(){
+		global $rep, $vues;
+		$taskMdl = new TaskMdl();
+		if(isset($_POST['idTask'])){
+			$taskMdl->updateContentTask($_POST['idTask'],$_POST['desc'.$_POST['idTask']]);
+		}
+		require($rep.$vues['main']);
+	}
+
+	function changePrivacy(){
+		global $rep, $vues;
+		$todoMdl = new ToDoMdl();
+		if(isset($_POST['idToDo'])){ 
+			if(isset($_POST['isPrivate'])){
+				$todoMdl->changePrivacy($_POST['idToDo'],false);
+			}
+			else{
+				$todoMdl->changePrivacy($_POST['idToDo'],true);
+			}
+		}
+		require($rep.$vues['main']);
+	}
+
 }//fin class
 ?>

@@ -41,56 +41,111 @@
 
             $userMdl = new UserMdl();
             $todoMdl = new ToDoMdl();
-            $todo = $todoMdl->getAllToDo($userMdl->getUserByEmail($_SESSION['login'])['id']);
+            $todoPrivee = $todoMdl->getAllToDo($userMdl->getUserByEmail($_SESSION['login'])['id']);
+
+            $todoPublic = $todoMdl->getOtherToDoPublic($_SESSION['login']);
+
+            $todo = $todoMdl->getEveryToDo();
 
             $selectedToDo=$_SESSION['selectedToDo'];
             //script display all ToDo
-            if($_SESSION['selectedToDo']!=-1){
             echo ('<div class="todo-sidebar">');
-            foreach ($todo as $value) {// all todo
+            if($_SESSION['login']!="Anonymous"){
+                echo('<span>My ToDoLists :</span>');
+            }
+            if($_SESSION['selectedToDo']!=-1){
+                foreach ($todoPrivee as $value) {// all todo
+                    echo('<form method="post">');
+                    echo ('<input class="todo-title" type="submit" value="'.$value->name.'"> <input type="hidden" name="id" value='.$value->id.'> <input type="hidden" name="action" value="DispToDo">');
+                    echo('</form>');
+                }
+            }
+            echo('<span>Public ToDoLists :</span>');
+            foreach ($todoPublic as $value) {
                 echo('<form method="post">');
                 echo ('<input class="todo-title" type="submit" value="'.$value->name.'"> <input type="hidden" name="id" value='.$value->id.'> <input type="hidden" name="action" value="DispToDo">');
                 echo('</form>');
             }
             echo ('</div>');
-            echo('<form method="post">');
-            
-            echo ('<div class="todo-content"><input class="todo-titleh2" type="text" name="title'.$todo[$selectedToDo]->id.'" value="'.$todo[$selectedToDo]->name.'" contenteditable="true"/>');
+            if($_SESSION['selectedToDo']!=-1){
+            echo('<div class="todo-content"><div style="display:flex;"><form method="post" style="width: -moz-available;">'); 
+            echo ('<input class="todo-titleh2" type="text" name="title'.$todo[$selectedToDo]->id.'" value="'.$todo[$selectedToDo]->name.'" contenteditable="true"/>');
+            echo ('
+                <input type="hidden" name="idToDo" value=<?=$selectedToDo?>
+                <input type="hidden" name="action" value="saveTodo"> 
+                </form>
+                ');
+               
+                if(isset($todoPrivee[$selectedToDo])){
+                    echo('
+                    <form method="post" class="privacy">
+                    <span class="material-symbols-outlined">shield</span>
+                    <input type="checkbox" name="isPrivate" onChange="submit()"
+                    ');
+                
+                if(!$todo[$selectedToDo]->visibility){
+                    echo('checked>');
+                    
+                }
+                else{
+                    echo('>');
+                }
+
+                }
+                echo('
+                    <input type="hidden" name="idToDo" value="'.$todo[$selectedToDo]->id.'">
+                    <input type="hidden" name="action" value="changePrivacy">
+                    </form>
+                    </div>
+                ');
 
             foreach($todo[$selectedToDo]->tasks as $taskP){// alltasks in the todo selected
                 echo('<div class="line">');
-                echo('<input type="checkbox" name="isDone'.$taskP->id.'" value="true" ');
+                echo('<form method="post">
+                      <input type="hidden" name="idTask" value="'.$taskP->id.'"/>
+                      <input type="checkbox" name="isDone"');
                 if($taskP->done){
                     echo('checked');
                 }
-                echo('>');
+                echo(' onChange="submit();">
+                        <input type="hidden"  name="action" value="taskChangeState">
+                        </form>
+                        <form method="post" style="width: -moz-available;">');
                 if($taskP->done){
                     echo('<input class="task-content done-task" name="desc'.$taskP->id.'" id="tess" value="'.$taskP->description.'"/>');
                 }
                 else{
                     echo('<input class="task-content" name="desc'.$taskP->id.'" id="tess" value="'.$taskP->description.'"/>');
                 }
-                echo('</div>');
+                echo('<input type="hidden" name="idTask" value="'.$taskP->id.'">
+                      <input type="hidden" name="action" value="saveContentTask">
+                      </form>');
+                echo('
+                    <form method="post">
+                    <input type="hidden" name="idTask" value="'.$taskP->id.'"/>
+                    <input type="submit" class="delete-task" value="X"/>
+                    <input type="hidden" name="action" value="deleteTask"> 
+                    </form>
+                    </div>');
             }
-            echo ('</p></div>');
+            echo ('</div>');
+            
             }
             ?>
 
-
-            <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
-            <input class="todo-save material-symbols-outlined" type="submit" value="task_alt">
-            <input type="hidden" name="action" value="saveTodo"> 
-        </form>
-        <form>
-            <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
-            <input class="todo-new" type="submit" value="+">
-            <input type="hidden" name="action" value="addNewTodo"> 
-        </form>
-        <form>
-            <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
-            <input class="todo-delete material-symbols-outlined" type="submit" value="delete">
-            <input type="hidden" name="action" value="deleteTodo"> 
-        </form>
+        <?php if($_SESSION['login']!="Anonymous"){?>
+            <form>
+                <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
+                <input class="todo-new" type="submit" value="+">
+                <input type="hidden" name="action" value="addNewTodo"> 
+            </form>
+            <?php if(isset($todoPrivee[$selectedToDo])){ ?>
+                <form>
+                    <input type="hidden" name="idToDo" value=<?=$selectedToDo?>>
+                    <input class="todo-delete material-symbols-outlined" type="submit" value="delete">
+                    <input type="hidden" name="action" value="deleteTodo"> 
+                </form>
+        <?php }}?>
  
     </div>
  </div>

@@ -10,6 +10,21 @@ class ToDoGateway
 		$this->conn = $conn;
 	}
 
+	public function getEveryToDo(){
+        $taskMdl = new TaskMdl();
+		$todo = array();
+		$requete = "SELECT * FROM ToDo";
+		if(!$this->conn->executeQuery($requete)){
+			return array();
+		}
+		$res = $this->conn->getResults();
+		foreach($res as $data){
+			$todo[$data['id']] = new TodoList($data['id'],$data['name'],$taskMdl->getAllTask($data['id']),$data['user'],$data['visibility']);
+		}
+		return $todo;
+	}
+
+
 	public function getAllToDoFromUser($userId){
         $taskMdl = new TaskMdl();
 		$todo = array();
@@ -38,6 +53,20 @@ class ToDoGateway
 		return $todo;
 	}
 	
+	public function getOtherToDoPublic($email){
+        $taskMdl = new TaskMdl();
+		$todo = array();
+		$requete = "SELECT t.* FROM ToDo AS t INNER JOIN User AS u ON t.user=u.id AND :email!=u.email AND t.visibility=true";
+		if(!$this->conn->executeQuery($requete, array(":email"=>array($email,PDO::PARAM_STR)))){
+			return array();
+		}
+		$res = $this->conn->getResults();
+		foreach($res as $data){
+			$todo[$data['id']] = new TodoList($data['id'],$data['name'],$taskMdl->getAllTask($data['id']),$data['user'],$data['visibility']);
+		}
+		return $todo;
+	}
+
 	public function getToDoById($id){
         $taskMdl = new TaskMdl();
 		$todos=array();
@@ -68,6 +97,12 @@ class ToDoGateway
 		$requete = "UPDATE ToDo SET name=:title WHERE id=:id";
 		$this->conn->executeQuery($requete,array(":id"=>array($id,PDO::PARAM_INT),
 												 ":title"=>array($title,PDO::PARAM_STR)));        
+    }
+
+	public function changePrivacy($id,$visibility){
+		$requete = "UPDATE ToDo SET visibility=:visibility WHERE id=:id";
+		$this->conn->executeQuery($requete,array(":id"=>array($id,PDO::PARAM_INT),
+												 ":visibility"=>array($visibility,PDO::PARAM_BOOL)));        
     }
 	
 	public function deleteToDoById($id){

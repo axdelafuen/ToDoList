@@ -39,6 +39,9 @@ $actionUser['saveTodo']='saveTodo';
 $actionUser['deleteTodo']='deleteTodo';
 $actionUser['addTask']='addTask';
 $actionUser['deleteTask']='deleteTask';
+$actionUser['saveContentTask']='saveContentTask';
+$actionUser['taskChangeState']='taskChangeState';
+$actionUser['changePrivacy']='changePrivacy';
 
 // action admin :
 $actionAdmin['scriptTable']='scriptTable';

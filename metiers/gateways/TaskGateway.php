@@ -18,7 +18,7 @@ class TaskGateway
 		}
 		$res = $this->conn->getResults();
 		foreach($res as $data){
-			$task[$data['id']] = new Task($data['id'],$data['priorities'],$data['done'],$data['description'],$data['todo']);
+			$task[$data['id']] = new Task($data['id'],$data['priorities'],$data['done'],$data['description']);
 		}
 		return $task;
 	}

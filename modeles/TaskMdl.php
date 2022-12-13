@@ -22,6 +22,9 @@ class TaskMdl{
     function deleteTaskFromToDo($id){
         $this->TaskGw->deleteTaskFromToDo($id);
     }
+    function deleteTaskById($id){
+        $this->TaskGw->deleteTaskById($id);
+    }
     function updateDoneTask($id,$done){
         $this->TaskGw->updateDoneTaskById($id,$done);
     }
