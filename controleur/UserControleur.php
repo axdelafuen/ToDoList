@@ -8,6 +8,7 @@ class UserControleur {
 
 		//on initialise un tableau d'erreur
 		$dVueEreur = array ();
+		$dVueAnnonce = array ();
 
 		try{
 			if(!isset($action)){
@@ -22,6 +23,26 @@ class UserControleur {
 
 			case "déconnexion":
 				$this->Deconnexion();
+				break;
+					
+			case "validationLogin":
+				$this->ValidationFormulaireLogin($dVueEreur);
+				break;
+			
+			case "validationRegister":
+				$this->ValidationFormulaireRegister($dVueEreur, $dVueAnnonce);
+				break;
+			
+			case "goRegister":
+				require($rep.$vues['register']);
+				break;				
+			
+			case "goLogin":
+				require($rep.$vues['login']);
+				break;
+								
+			case "logAno":
+				$this->LogAno();
 				break;
 			
 			case "editAccount":
@@ -136,6 +157,77 @@ class UserControleur {
 		require($rep.$vues['main']);
 	}
 
+		function ValidationFormulaireRegister(array $dVueEreur, array $dVueAnnonce){
+		global $rep,$vues;
+
+		//si exception, ca remonte !!!
+		$email=$_POST['email']; 
+		$password=$_POST['password'];
+		$passwordConfirm=$_POST['passwordConfirm'];
+		Validation::val_formReg($email, $password, $passwordConfirm ,$dVueEreur);
+		
+		if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
+			require($rep.$vues['register']);
+		}
+		else{
+			Validation::val_userRegister($email,$password, $dVueEreur);
+			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
+				require ($rep.$vues['register']);
+			}
+			else{
+				$dVueAnnonce[] = 'You\'re now register, you can login !';
+				require ($rep.$vues['login']);
+			}
+		}
+	}
+	
+	// CLASS MODEL
+	function ValidationFormulaireLogin(array $dVueEreur) {
+		global $rep,$vues, $dsn, $username, $passwordBD;
+
+		//si exception, ca remonte !!!
+		$email=$_POST['email']; 
+		$password=$_POST['password'];
+		Validation::val_formLog($email, $password, $dVueEreur);//nettoyage var
+		
+		if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
+			require($rep.$vues['login']);// si tab err non nul affichage err
+		}
+		else{
+			Validation::val_user($email,$password,$dVueEreur);//verif existence user
+
+			if(isset($dVueEreur['password']) || isset($dVueEreur['email'])){
+				require($rep.$vues['login']);
+			}
+			else{
+				if(Validation::isAdmin($email)){ //verif user est un admin
+					$_SESSION['role'] = 'admin';
+					$_SESSION['login']=$email;
+					require($rep.$vues['admin']);
+				}
+				else{
+					$_SESSION['role'] = 'user';
+					$_SESSION['login']=$email;
+					$userMdl = new UserMdl();
+					$userid = $userMdl->getUserByEmail($email)['id'];
+					$todoMdl = new ToDoMdl();
+					$_SESSION['selectedToDo']=$todoMdl->getFirstToDo($userid);
+					require ($rep.$vues['main']);
+				}
+			}
+		}
+	}
+			
+	function logAno(){
+		global $rep, $vues,$user;
+		$_SESSION['role'] = 'ano';
+		$_SESSION['login']="Anonymous";
+		$_SESSION['selectedToDo']=-1;		
+		require($rep.$vues['main']);
+	}
+
+
+	
 	function deleteToDo(){
 		global $rep,$vues;
 		if($_SESSION['selectedToDo']==-1){

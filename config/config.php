@@ -42,6 +42,11 @@ $actionUser['deleteTask']='deleteTask';
 $actionUser['saveContentTask']='saveContentTask';
 $actionUser['taskChangeState']='taskChangeState';
 $actionUser['changePrivacy']='changePrivacy';
+$actionUser['validationLogin']='validationLogin';
+$actionUser['validationRegister']='validationRegister';
+$actionUser['goRegister']='goRegister';
+$actionUser['goLogin']='goLogin';
+$actionUser['logAno']='logAno';
 
 // action admin :
 $actionAdmin['scriptTable']='scriptTable';
@@ -55,31 +60,6 @@ require_once('metiers/ToDoList.php');
 require_once('metiers/Task.php');
 require_once('metiers/User.php');
 // global var
-$user;
 $selectedToDo=0;
-// variables de test :
-$usr1=new User(1,'Catherine@php.com','4321', false);
-$usr2=new User(1,'fred@fred.com','1234', false);
-$usrAr= array(0=>$usr1,1=>$usr2);
-
-$tsk1=new Task( 1,1,false,'Faire cuire des pates');
-$tsk2 = new Task(2,2,true,'Manger du pain');
-$tsk5 = new Task(3,2,true,'Manger du pain');
-$ar1 = array();
-$ar1[]=$tsk1;
-$ar1[]=$tsk2;
-$ar1[]=$tsk5;
-
-$tsk3=new Task( 4,1,false,'Boire');
-$tsk4 = new Task(5,2,true,'Dormir');
-$ar2 = array();
-$ar2[]=$tsk3;
-$ar2[]=$tsk4;
-$todo1=new ToDoList(0,"ToDo1",$ar1,$usrAr,true);
-$todo2=new ToDoList(1,"ToDo2",$ar2,$usrAr,true);
-
-$todo = array();
-$todo[]=$todo1;
-$todo[]=$todo2;
 
 ?>
