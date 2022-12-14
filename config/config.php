@@ -29,6 +29,8 @@ $vues['admin']='vues/adminPanel.php';
 $vues['editAccount']='vues/editAccount.php';
 
 // actions user :
+
+$actionUser['NULL']=NULL;
 $actionUser['déconnexion']='déconnexion';
 $actionUser['editAccount']='editAccount';
 $actionUser['back']='back';
