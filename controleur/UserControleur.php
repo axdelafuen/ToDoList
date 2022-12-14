@@ -121,30 +121,24 @@ class UserControleur {
 		$id=$_POST['id']; 
 		global $rep,$vues,$user;
 		$_SESSION['selectedToDo'] = $id;
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 	function NewTodo(){
-		global $rep,$vues;
 		$userMdl = new UserMdl();
 		$user = $userMdl->getUserByEmail($_SESSION['login']);
 		$todoMdl = new ToDoMdl();
 		$todoMdl->addToDo(new ToDoList(0,'{New ToDoList}', array(),$user,false));
 		$_SESSION['selectedToDo'] = $todoMdl->getLastToDo($user['id']);
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 	function saveToDo(){
-		global $rep,$vues;
-		$taskMdl = new TaskMdl();
 		$todoMdl = new ToDoMdl();
 		$todo = $todoMdl->getAllToDoEmail($_SESSION['login']);
-
 		$todoMdl->updateTitle($_SESSION['selectedToDo'],$_POST['title'.$_SESSION['selectedToDo']]);
-
-		require($rep.$vues['main']);
-	}
+		$this->reinitView();
+}
 
 	function taskChangeState(){
-		global $rep, $vues;
 		$taskMdl = new TaskMdl();
 		if(isset($_POST['idTask'])){
 			if(isset($_POST['isDone'])){
@@ -154,13 +148,17 @@ class UserControleur {
 				$taskMdl->updateDoneTask($_POST['idTask'],false);
 			}
 		}
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 
 		function ValidationFormulaireRegister(array $dVueEreur, array $dVueAnnonce){
 		global $rep,$vues;
 
 		//si exception, ca remonte !!!
+		if(!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['passwordConfirm'])){
+			$dVueEreur['email'] = 'Bad form value !';
+			require($rep.$vues['login']);
+		}
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
 		$passwordConfirm=$_POST['passwordConfirm'];
@@ -185,6 +183,10 @@ class UserControleur {
 	function ValidationFormulaireLogin(array $dVueEreur) {
 		global $rep,$vues, $dsn, $username, $passwordBD;
 
+		if(!isset($_POST['email']) || !isset($_POST['password'])){
+			$dVueEreur['email'] = 'Bad form value !';
+			require($rep.$vues['login']);
+		}
 		//si exception, ca remonte !!!
 		$email=$_POST['email']; 
 		$password=$_POST['password'];
@@ -212,24 +214,22 @@ class UserControleur {
 					$userid = $userMdl->getUserByEmail($email)['id'];
 					$todoMdl = new ToDoMdl();
 					$_SESSION['selectedToDo']=$todoMdl->getFirstToDo($userid);
-					require ($rep.$vues['main']);
+					$this->reinitView();
 				}
 			}
 		}
 	}
 			
 	function logAno(){
-		global $rep, $vues,$user;
 		$_SESSION['role'] = 'ano';
 		$_SESSION['login']="Anonymous";
 		$_SESSION['selectedToDo']=-1;		
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 
 
 	
 	function deleteToDo(){
-		global $rep,$vues;
 		if($_SESSION['selectedToDo']==-1){
 			require($rep.$vues['main']);
 			return;
@@ -238,41 +238,37 @@ class UserControleur {
 		$todoMdl->deleteToDo($_SESSION['selectedToDo']);
 		$userMdl = new UserMdl();
 		$_SESSION['selectedToDo']=$todoMdl->getFirstToDo($userMdl->getUserByEmail($_SESSION['login'])['id']);
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 
 
 	function addTask(){
-		global $rep,$vues;
 		if($_SESSION['selectedToDo']==-1){
 			require($rep.$vues['main']);
 			return;
 		}
 		$taskMdl = new TaskMdl();
 		$taskMdl->addTask($_SESSION['selectedToDo']);
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 
 	function deleteTask(){
-		global $rep, $vues;
 		$taskMdl = new TaskMdl();
 		if(isset($_POST['idTask'])){
 			$taskMdl->deleteTaskById($_POST['idTask']);
 		}
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 
 	function saveContentTask(){
-		global $rep, $vues;
 		$taskMdl = new TaskMdl();
 		if(isset($_POST['idTask'])){
 			$taskMdl->updateContentTask($_POST['idTask'],$_POST['desc'.$_POST['idTask']]);
 		}
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 
 	function changePrivacy(){
-		global $rep, $vues;
 		$todoMdl = new ToDoMdl();
 		if(isset($_POST['idToDo'])){ 
 			if(isset($_POST['isPrivate'])){
@@ -282,8 +278,21 @@ class UserControleur {
 				$todoMdl->changePrivacy($_POST['idToDo'],true);
 			}
 		}
-		require($rep.$vues['main']);
+		$this->reinitView();
 	}
 
+	function reinitView(){
+		global $rep, $vues;
+		$userMdl = new UserMdl();
+        $todoMdl = new ToDoMdl();
+        
+		$todoPrivee = $todoMdl->getAllToDo($userMdl->getUserByEmail($_SESSION['login'])['id']);
+		$todoPublic = $todoMdl->getOtherToDoPublic($_SESSION['login']);
+		$todo = $todoMdl->getEveryToDo();
+
+        $selectedToDo=$_SESSION['selectedToDo'];
+
+		require($rep.$vues['main']);
+	}
 }//fin class
 ?>

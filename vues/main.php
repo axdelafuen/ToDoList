@@ -37,17 +37,6 @@
 <div class="todo-container">
     <div class="todo">
         <?php
-            global $dsn,$username,$passwordBD;
-
-            $userMdl = new UserMdl();
-            $todoMdl = new ToDoMdl();
-            $todoPrivee = $todoMdl->getAllToDo($userMdl->getUserByEmail($_SESSION['login'])['id']);
-
-            $todoPublic = $todoMdl->getOtherToDoPublic($_SESSION['login']);
-
-            $todo = $todoMdl->getEveryToDo();
-
-            $selectedToDo=$_SESSION['selectedToDo'];
             //script display all ToDo
             echo ('<div class="todo-sidebar">');
             if($_SESSION['login']!="Anonymous"){

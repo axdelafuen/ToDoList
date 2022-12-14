@@ -172,7 +172,8 @@ body {
   flex-direction: row;
 
 }
-.line form{
+
+.line form {
   display: flex;
 }
 
@@ -223,9 +224,10 @@ body {
   cursor: pointer;
 }
 
-.privacy{
+.privacy {
   align-self: center;
-  display:flex;
+  display: flex;
+  margin-right: 1.3rem;
 }
 
 /* ----------- */
